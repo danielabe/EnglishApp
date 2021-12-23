@@ -69,9 +69,12 @@ header{
             }
             li{
                 border-bottom: 1px solid #7D7987;
+                &:hover{
+                    color: #440a29;
+                }
                 @media screen and (min-width: 768px) {
                     border: none;
-                    /* color: $tertiary; */
+                    color: grey;
                 }
                 a{
                     width: 100%;
