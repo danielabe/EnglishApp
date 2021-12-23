@@ -1,0 +1,86 @@
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: aquamarine;
+    .logo{
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        color: #440a29;
+        img{
+            width: 50px;
+            height: fit-content;
+        }
+    }
+    .menu{
+        display: flex;
+        justify-content: center;
+        width: 30px;
+        @media screen and (min-width: 768px) {
+            width: auto;
+        }
+    }
+    .menu-btn{
+        width: 30px;
+    }
+    .close{
+        width: 20px;
+    }
+    
+    input[type="checkbox"] {
+        display: none;
+        &:checked ~ label .menu-btn {
+            display: none;
+        }
+        &:not(:checked) ~ label .close{
+            display: none;
+        }
+        &:checked ~ nav ul {
+            height: 152px;
+            width: 100%;
+            color: #7D7987;
+        }
+    }
+    .menu-btn, .close {
+        @media screen and (min-width: 768px) {
+            display: none;
+        }
+    }
+    nav{
+        ul{
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            right: 0;
+            top: 70px;
+            overflow: hidden;
+            height: 0px;
+            width: 100%;
+            background-color: white;
+            transition: height 1s ease-in-out;
+            @media screen and (min-width: 768px) {
+                flex-direction: row;
+                position: initial;
+                width: auto;
+                height: auto;
+                background-color: transparent;
+            }
+            li{
+                border-bottom: 1px solid #7D7987;
+                @media screen and (min-width: 768px) {
+                    border: none;
+                    /* color: $tertiary; */
+                }
+                a{
+                    width: 100%;
+                    padding: 10px;
+                    font-size: 13px;
+                    font-weight: 400;
+                    line-height: 17px;
+                }
+            }
+        }
+    }
+}
