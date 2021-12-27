@@ -259,13 +259,38 @@ main #words > li {
   /* border-bottom: 1px solid #cdcdcd; */
 }
 
-main #words h3 {
+main #words .word {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
   padding: 0 0 15px 0;
   font-size: 24px;
 }
 
-main #words h3 span {
+main #words .word span {
   font-weight: 400;
+}
+
+main #words .word img {
+  width: 40px;
+}
+
+main #words .word button {
+  padding: 7px;
+  border: 2px solid #440a29;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #440a29;
+  cursor: pointer;
+}
+
+main #words .word button:hover {
+  background-color: #e3a4d0;
+  background-color: #ef8bbd;
 }
 
 main #words audio {
