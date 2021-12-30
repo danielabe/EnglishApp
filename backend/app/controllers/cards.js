@@ -1,4 +1,4 @@
-const { QueryTypes } = require('sequelize');
+const { QueryTypes } = require('sequelize')
 const { httpError } = require('../helpers/handleError')
 const { db } = require("../../config/mysql")
 const cardsModel = require('../models/cards')
@@ -19,28 +19,25 @@ const getCards = async (req, res) => {
                 console.log(results)
                 res.status(200).json(cards)
             })
-            /* .catch(error => {
-                console.log(error)
-            }) */
+        /* .catch(error => {
+            console.log(error)
+        }) */
     } catch (e) {
         httpError(res, e)
     }
-};
+}
 
 const createCard = async (req, res) => {
+    const { word, definition, example, audio } = req.body
     try {
-        await cardsModel.create({
-            word: 'ship',
-            definition: 'boat',
-            example: 'I go by ship',
-            audio: 'audio2.mp4'
-          }, { fields: ['word', 'definition', 'example', 'audio'] })
-          .then(card => {
-            const result = JSON.stringify(card)
-            console.log(result)
-            res.status(200).json(card)
-        });
-          
+        await cardsModel.create({ word, definition, example, audio },
+            { fields: ['word', 'definition', 'example', 'audio'] })
+            .then(card => {
+                const result = JSON.stringify(card)
+                console.log(result)
+                res.status(200).json(card)
+            })
+
     } catch (e) {
         httpError(res, e)
     }
