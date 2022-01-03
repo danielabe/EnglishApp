@@ -27,6 +27,16 @@ window.addEventListener('load', () => {
     }
 
     function renderTable(table){
+        document.getElementById('wordsList').innerHTML += `<li>
+                                                                <ul class="row table-header">
+                                                                    <li class="t-element t-word t-header">Word <i class="fas fa-sort"></i></li>
+                                                                    <li class="t-element t-def t-header">Definition</li>
+                                                                    <li class="t-element t-example t-header">Example</li>
+                                                                    <li class="t-element t-audio"></li>
+                                                                    <li class="t-element t-level t-header">Level <i class="fas fa-sort"></i></li>
+                                                                    <li class="t-element t-edit t-header">Options</li>
+                                                                </ul>
+                                                            </li>`
         table.forEach((row,i) => {
           console.log(row)  
           document.getElementById('wordsList').innerHTML += `<li>
@@ -40,7 +50,14 @@ window.addEventListener('load', () => {
                                                                     <li class="t-element t-def">${row.definition}</li>
                                                                     <li class="t-element t-example">${row.example}</li>
                                                                     <li class="t-element t-audio">${row.audio}</li>
-                                                                    <li class="t-element t-calif"></li>
+                                                                    <li class="t-element t-level">
+                                                                        <form name="formulario" method="post" action="/send.php">
+                                                                        <meter min="0" max="100"
+                                                                            low="25" high="75"
+                                                                            optimum="100" value=${"50"}>
+                                                                        </form>
+                                                                    </li>
+                                                                    <li class="t-element t-edit"><i class="far fa-edit"></i><i class="far fa-trash-alt"></i></li>
                                                                 </ul>
                                                             </li>`
         })

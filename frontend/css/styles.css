@@ -354,6 +354,27 @@ main #wordsList {
   margin: 30px auto;
 }
 
+main #wordsList .table-header {
+  border-top: 1px solid #a1a0a0;
+}
+
+main #wordsList .t-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 5px;
+  color: black;
+  font-style: normal;
+  font-weight: bold;
+}
+
+main #wordsList .t-header .fa-sort {
+  cursor: pointer;
+}
+
 main .row {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -367,30 +388,94 @@ main .row:hover {
 }
 
 main .t-word {
-  width: 20%;
-}
-
-main .t-def {
-  width: 30%;
-}
-
-main .t-example {
-  width: 30%;
-}
-
-main .t-audio {
-  width: 10%;
-}
-
-main .t-calif {
-  width: 10%;
-}
-
-main .t-element {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   gap: 5px;
+  width: calc(100% - 145px);
+}
+
+@media screen and (min-width: 480px) {
+  main .t-word {
+    width: 25%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  main .t-word {
+    width: 20%;
+  }
+}
+
+main .t-word .fa-play-circle {
+  cursor: pointer;
+}
+
+main .t-def {
+  display: none;
+}
+
+@media screen and (min-width: 480px) {
+  main .t-def {
+    display: block;
+    width: calc(75% - 145px);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  main .t-def {
+    width: calc((80% - 145px)/2);
+  }
+}
+
+main .t-example {
+  display: none;
+  width: 0%;
+  font-style: italic;
+  color: #8c8c8c;
+}
+
+@media screen and (min-width: 768px) {
+  main .t-example {
+    display: block;
+    width: calc((80% - 145px)/2);
+  }
+}
+
+main .t-audio {
+  display: none;
+  width: 0%;
+}
+
+main .t-level {
+  width: 75px;
+}
+
+main .t-level meter {
+  width: 100%;
+}
+
+main .t-edit {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 5px;
+  width: 70px;
+}
+
+main .t-edit .far {
+  color: #a5a1a1;
+  cursor: pointer;
+}
+
+main .t-edit .far:hover {
+  color: black;
+}
+
+main .t-element {
   padding: 5px;
   overflow: hidden;
   /* border: 1px solid rgb(161, 160, 160);

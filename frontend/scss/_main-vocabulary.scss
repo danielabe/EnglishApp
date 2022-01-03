@@ -2,6 +2,20 @@ main{
     #wordsList{
         width: 95%;
         margin: 30px auto;
+        .table-header{
+            border-top: 1px solid #a1a0a0;
+        }
+        .t-header{
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: black;
+            font-style: normal;
+            font-weight: bold;
+            .fa-sort{
+                cursor: pointer;
+            }
+        }
     }
     .row{
         display: flex;
@@ -12,23 +26,63 @@ main{
         }
     }
     .t-word{
-        width: 20%;
-    }
-    .t-def{
-        width: 30%;
-    }
-    .t-example{
-        width: 30%;
-    }
-    .t-audio{
-        width: 10%;
-    }
-    .t-calif{
-        width: 10%;
-    }
-    .t-element{
         display: flex;
         gap: 5px;
+        width: calc(100% - 145px);
+        @media screen and (min-width: 480px) {
+            width: 25%;
+        }
+        @media screen and (min-width: 768px) {
+            width: 20%;
+        }
+        .fa-play-circle{
+            cursor: pointer;
+        }
+    }
+    .t-def{
+        display: none;
+        @media screen and (min-width: 480px) {
+            display: block;
+            width: calc(75% - 145px);
+        }
+        @media screen and (min-width: 768px) {
+            width: calc((80% - 145px)/2);
+        }
+    }
+    .t-example{
+        display: none;
+        width: 0%;
+        font-style: italic;
+        color: #8c8c8c;
+        @media screen and (min-width: 768px) {
+            display: block;
+            width: calc((80% - 145px)/2);
+        }
+    }
+    .t-audio{
+        display: none;
+        width: 0%;
+    }
+    .t-level{
+        width: 75px;
+        meter{
+            width: 100%;
+        }
+    }
+    .t-edit{
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+        width: 70px;
+        .far{
+            color: rgb(165, 161, 161);
+            cursor: pointer;
+            &:hover{
+                color: black;
+            }
+        }
+    }
+    .t-element{
         padding: 5px;
         overflow: hidden;
         /* border: 1px solid rgb(161, 160, 160);
