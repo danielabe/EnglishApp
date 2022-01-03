@@ -1,0 +1,38 @@
+main{
+    #wordsList{
+        width: 95%;
+        margin: 30px auto;
+    }
+    .row{
+        display: flex;
+        gap: 1px;
+        border-bottom: 1px solid rgb(161, 160, 160);
+        &:hover {
+            background: rgba(0,0,0,0.05);
+        }
+    }
+    .t-word{
+        width: 20%;
+    }
+    .t-def{
+        width: 30%;
+    }
+    .t-example{
+        width: 30%;
+    }
+    .t-audio{
+        width: 10%;
+    }
+    .t-calif{
+        width: 10%;
+    }
+    .t-element{
+        display: flex;
+        gap: 5px;
+        padding: 5px;
+        overflow: hidden;
+        /* border: 1px solid rgb(161, 160, 160);
+        border-right: hidden;
+        border-bottom: hidden; */
+    }
+}

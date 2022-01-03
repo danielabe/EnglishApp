@@ -348,4 +348,53 @@ main .not-found p {
 main .none {
   display: none;
 }
+
+main #wordsList {
+  width: 95%;
+  margin: 30px auto;
+}
+
+main .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1px;
+  border-bottom: 1px solid #a1a0a0;
+}
+
+main .row:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+main .t-word {
+  width: 20%;
+}
+
+main .t-def {
+  width: 30%;
+}
+
+main .t-example {
+  width: 30%;
+}
+
+main .t-audio {
+  width: 10%;
+}
+
+main .t-calif {
+  width: 10%;
+}
+
+main .t-element {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 5px;
+  padding: 5px;
+  overflow: hidden;
+  /* border: 1px solid rgb(161, 160, 160);
+        border-right: hidden;
+        border-bottom: hidden; */
+}
 /*# sourceMappingURL=styles.css.map */

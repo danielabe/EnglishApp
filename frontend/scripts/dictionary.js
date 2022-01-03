@@ -15,12 +15,12 @@ window.addEventListener('load', () => {
         fetch(`${url}${word}`)
             .then(response => response.json())
             .then(data => {
-                render(data)
+                renderDefinitions(data)
             })
             .catch(error => console.log(error))
     }
 
-    function render(info) {
+    function renderDefinitions(info) {
         console.log(info)
 
         if (typeof info.length != 'number') {
@@ -89,24 +89,25 @@ window.addEventListener('load', () => {
                 console.log(card)
 
                 fetchAddWord('http://localhost:3000/api/1.0/cards', card)
-                async function fetchAddWord(url, payload) {
-                    const settings = {
-                        method: 'POST',
-                        headers: {
-                            /* authorization: token, */
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(payload)
-                    }
-                    try {
-                        const response = await fetch(url, settings)
-                        const card = await response.json()
-                        console.log(card)
-                    } catch (e) {
-                        console.log(e)
-                    }
-                }
             })
         })
+    }
+
+    async function fetchAddWord(url, payload) {
+        const settings = {
+            method: 'POST',
+            headers: {
+                /* authorization: token, */
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload)
+        }
+        try {
+            const response = await fetch(url, settings)
+            const card = await response.json()
+            console.log(card)
+        } catch (e) {
+            console.log(e)
+        }
     }
 })
