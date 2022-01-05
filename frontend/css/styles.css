@@ -161,6 +161,10 @@ header nav ul li a {
   line-height: 17px;
 }
 
+.none {
+  display: none;
+}
+
 main h1 {
   padding: 35px 5px 25px;
   font-size: 40px;
@@ -508,114 +512,147 @@ main .t-element {
   overflow: hidden;
 }
 
-main .container__card {
-  max-width: 1200px;
-  margin: auto;
-  margin-top: 100px;
-  -webkit-perspective: 1000px;
-          perspective: 1000px;
+main #cards {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100vh;
 }
 
-main .card__father {
-  margin: 20px;
-  -webkit-perspective: 1000px;
-          perspective: 1000px;
-}
-
-main .card__father:hover .card {
-  -webkit-transform: rotateY(180deg);
-          transform: rotateY(180deg);
+main .scene {
+  width: 200px;
+  height: 260px;
+  -webkit-perspective: 600px;
+          perspective: 600px;
 }
 
 main .card {
-  width: 250px;
-  height: 200px;
-  position: relative;
-  -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
-  -webkit-transition: all 600ms;
-  transition: all 600ms;
-  border: 1px solid black;
-  border-radius: 15px;
-}
-
-main .card__front {
-  background-size: cover;
-  background-position: center;
-}
-
-main .card__front,
-main .card__back {
   width: 100%;
   height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
+  position: relative;
+  border-radius: 15px;
+  -webkit-box-shadow: 0 4px 8px 1px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 4px 8px 1px rgba(0, 0, 0, 0.2);
+  -webkit-transition: -webkit-transform 1s;
+  transition: -webkit-transform 1s;
+  transition: transform 1s;
+  transition: transform 1s, -webkit-transform 1s;
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
-  border-radius: 20px;
+  /* pointer-events: none; */
 }
 
-main .card__back {
+main .card h4 {
+  padding-bottom: 15px;
+}
+
+main .card a {
+  position: relative;
+  z-index: 1;
+  padding: 3px;
+  cursor: pointer;
+}
+
+main .card .disabled {
+  pointer-events: none;
+}
+
+main .card .audio-container {
+  padding-bottom: 15px;
+}
+
+main .card .btns-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: absolute;
+  bottom: 15px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: calc(100% - 30px);
+}
+
+main .card i {
+  position: relative;
+  z-index: 1;
+  padding: 3px;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+main .cover-front {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+main .card__face {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  /* pointer-events: auto; */
+}
+
+main .card__face--front {
+  /* display: flex;
+        justify-content: center;
+        align-items: center;
+        h4{
+            padding-bottom: 60px;
+        } */
+}
+
+main .card-front-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+}
+
+main .cover-back {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+main .card__face--back {
+  padding: 15px;
+  -webkit-transform: rotateY(180deg) translateZ(1px);
+          transform: rotateY(180deg) translateZ(1px);
+}
+
+main .card.is-flipped {
   -webkit-transform: rotateY(180deg);
           transform: rotateY(180deg);
-  background: white;
-}
-
-main .body__card_front {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  gap: 10px;
-  height: 100%;
-}
-
-main .body__card_back {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  gap: 10px;
-  height: 100%;
-  padding: 15px;
 }
 
 main .c-definition {
-  font-size: 17px;
   font-weight: bold;
 }
 
 main .c-example {
-  padding: 10px 0;
+  padding-top: 10px;
   font-style: italic;
   color: #8c8c8c;
 }

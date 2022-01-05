@@ -1,6 +1,7 @@
 window.addEventListener('load', async () => {
     const wordsList = document.getElementById('wordsList')
     const practiceBtn = document.querySelector('.practice-btn')
+    const header = document.querySelector('header')
     const tableSection = document.getElementById('table')
     const cardsSection = document.getElementById('cards')
     let orderedWords = false
@@ -10,47 +11,61 @@ window.addEventListener('load', async () => {
     
     practiceBtn.addEventListener('click', () => {
         tableSection.classList.add('none')
+        header.classList.add('none')
         cardsSection.classList.remove('none')
         
         let i = 0
-        console.log(cards[i])
         renderCard(cards[i], i)
-        cardsSection.addEventListener('click', () => {
+
+        const cardFaceFront = document.querySelector('.card__face--front');
+        const cardFaceBack = document.querySelector('.card__face--back');
+        const card = document.querySelector('.card');
+        const audio = document.querySelector('.card a')
+        const coverFront = document.querySelector('.cover-front')
+        const coverBack = document.querySelector('.cover-back')
+        coverFront.addEventListener('click', function () {
+            card.classList.toggle('is-flipped');
+            audio.classList.add('disabled')
+        });
+        coverBack.addEventListener('click', function () {
+            card.classList.toggle('is-flipped');
+            audio.classList.remove('disabled')
+        });
+
+
+        /* cardsSection.addEventListener('click', () => {
             i++
-            console.log(cards[i])
             renderCard(cards[i], i)
-        })
-        
+        }) */
     })
 
     function renderCard(card, i){
-        cardsSection.innerHTML += /* `<div>
-                                        <h4>${card.word}<h4/>
-                                        <audio id="playerCard-${i}" src="${card.audio}"></audio>
-                                        <div>
-                                            <a onclick="document.getElementById('playerCard-${i}').play()"><i class="far fa-play-circle"></i></a>
-                                        </div>
-                                    </div>` */
-
-
-
-                                    `<div class="container__card">
-                                        <div class="card__father">
-                                            <div class="card">
-                                                <div class="card__front">
-                                                    <div class="bg"></div>
-                                                    <div class="body__card_front">
-                                                        <h4>${card.word}<h4/>
+        cardsSection.innerHTML +=   `<div class="scene">
+                                        <div class="card">
+                                            <div class="card__face card__face--front">
+                                                <div class="cover-front"></div>
+                                                <div class="card-front-container">
+                                                    <h4>${card.word}<h4/>
+                                                    <div class="audio-container">
                                                         <audio id="playerCard-${i}" src="${card.audio}"></audio>
                                                         <div>
                                                             <a onclick="document.getElementById('playerCard-${i}').play()"><i class="far fa-play-circle"></i></a>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="card__back">
-                                                    <div class="body__card_back">
-                                                        <p class="c-definition">${card.definition}</p>
-                                                        <p class="c-example">${card.example}</p>
+                                            </div>
+                                            <div class="card__face card__face--back">
+                                                <div class="cover-back"></div>
+                                                <div class="card-back-container">
+                                                    <p class="c-definition">${card.definition}</p>
+                                                    <p class="c-example">${card.example}</p>
+                                                    <div class="btns-container">
+                                                        <div>
+                                                            <i class="far fa-smile"></i>
+                                                            <i class="far fa-meh"></i>
+                                                            <i class="far fa-frown"></i>
+                                                        </div>
+                                                        <i class="fas fa-arrow-right"></i>
                                                     </div>
                                                 </div>
                                             </div>
