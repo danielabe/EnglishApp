@@ -1,4 +1,23 @@
 main{
+    .practice-btn-container{
+        position: absolute;
+        top: 165px;
+        right: calc(50% - 33px);
+        @media screen and (min-width: 480px) {
+            top: 85px;
+            right: 15px;
+        }
+    }
+    .practice-btn{
+        width: 66px;
+        padding: 6px;
+        background-color: #ef8bbd;
+        border: 1.5px solid #440a29;
+        border-radius: 5px;
+        color: #440a29;
+        font-weight: 600;
+        cursor: pointer;
+    }
     #wordsList{
         width: 95%;
         margin: 30px auto;
@@ -6,9 +25,6 @@ main{
             border-top: 1px solid #a1a0a0;
         }
         .t-header{
-            display: flex;
-            align-items: center;
-            gap: 5px;
             color: black;
             font-style: normal;
             font-weight: bold;
@@ -17,18 +33,24 @@ main{
             }
         }
     }
+    .t-header{
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
     .row{
         display: flex;
         gap: 1px;
         border-bottom: 1px solid rgb(161, 160, 160);
-        &:hover {
+        /* &:hover {
             background: rgba(0,0,0,0.05);
-        }
+        } */
     }
     .t-word{
         display: flex;
         gap: 5px;
         width: calc(100% - 145px);
+        min-width: 124px;
         @media screen and (min-width: 480px) {
             width: 25%;
         }
@@ -85,8 +107,80 @@ main{
     .t-element{
         padding: 5px;
         overflow: hidden;
-        /* border: 1px solid rgb(161, 160, 160);
-        border-right: hidden;
-        border-bottom: hidden; */
     }
+
+
+
+
+    .container__card{
+        max-width: 1200px;
+        margin: auto;
+        margin-top: 100px;
+        perspective: 1000px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .card__father{
+        margin: 20px;
+        perspective: 1000px;
+    }
+    .card__father:hover .card{
+        transform: rotateY(180deg);
+    }
+    .card{
+        width: 250px;
+        height: 200px;
+        position: relative;
+        transform-style: preserve-3d;
+        transition: all 600ms;
+        border: 1px solid black;
+        border-radius: 15px;
+    }
+    .card__front{
+        background-size: cover;
+        background-position: center;
+    }
+    .card__front,
+    .card__back{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        backface-visibility: hidden;
+        transform-style: preserve-3d;
+        border-radius: 20px;
+    }
+    .card__back{
+        transform: rotateY(180deg);
+        background: white;
+    }
+    .body__card_front{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        height: 100%;
+    }
+    .body__card_back{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        height: 100%;
+        padding: 15px;
+    }
+    .c-definition{
+        font-size: 17px;
+        font-weight: bold;
+    }
+    .c-example{
+        padding: 10px 0;
+        font-style: italic;
+        color: #8c8c8c;
+    }
+    
 }
