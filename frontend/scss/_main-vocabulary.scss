@@ -181,14 +181,6 @@ main{
         backface-visibility: hidden;
         /* pointer-events: auto; */
     }
-    .card__face--front {
-        /* display: flex;
-        justify-content: center;
-        align-items: center;
-        h4{
-            padding-bottom: 60px;
-        } */
-    }
     .card-front-container{
         display: flex;
         flex-direction: column;
