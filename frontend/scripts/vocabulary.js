@@ -4,6 +4,8 @@ window.addEventListener('load', async () => {
     const header = document.querySelector('header')
     const tableSection = document.getElementById('table')
     const cardsSection = document.getElementById('cards')
+    const cardsContainer = document.getElementById('cardsContainer')
+    const closeCards = document.getElementById('closeCards')
     let orderedWords = false
     
     const cards = await fetchGetPhrases('http://localhost:3000/api/1.0/cards')
@@ -12,17 +14,16 @@ window.addEventListener('load', async () => {
     practiceBtn.addEventListener('click', () => {
         tableSection.classList.add('none')
         header.classList.add('none')
-        cardsSection.classList.remove('none')
+        cardsSection.classList = 'cards'
         
         let i = 0
         renderCard(cards[i], i)
 
-        const cardFaceFront = document.querySelector('.card__face--front');
-        const cardFaceBack = document.querySelector('.card__face--back');
         const card = document.querySelector('.card');
         const audio = document.querySelector('.card a')
         const coverFront = document.querySelector('.cover-front')
         const coverBack = document.querySelector('.cover-back')
+        const next = document.querySelector('.fa-arrow-right')
         coverFront.addEventListener('click', function () {
             card.classList.toggle('is-flipped');
             audio.classList.add('disabled')
@@ -32,15 +33,27 @@ window.addEventListener('load', async () => {
             audio.classList.remove('disabled')
         });
 
-
+        next.addEventListener('click', () => {
+            i++
+            renderCard(cards[i], i)
+        })
         /* cardsSection.addEventListener('click', () => {
             i++
             renderCard(cards[i], i)
         }) */
+        closeCards.addEventListener('click', () => closeCardsFunction())
     })
 
+    function closeCardsFunction(){
+        tableSection.classList.remove('none')
+        header.classList.remove('none')
+        cardsSection.classList = 'none'
+    }
+
     function renderCard(card, i){
-        cardsSection.innerHTML +=   `<div class="scene">
+        cardsContainer.innerHTML = ''
+        cardsContainer.innerHTML +=   `
+                                    <div class="scene">
                                         <div class="card">
                                             <div class="card__face card__face--front">
                                                 <div class="cover-front"></div>

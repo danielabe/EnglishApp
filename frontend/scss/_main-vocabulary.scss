@@ -108,8 +108,19 @@ main{
         padding: 5px;
         overflow: hidden;
     }
-
-    #cards{
+    #closeCards{
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        width: 30px;
+        padding: 5px;
+        background-color: #abc3ca;
+        cursor: pointer;
+        &:hover{
+            background-color: #72b1c5;
+        }
+    }
+    .cards{
         display: flex;
         justify-content: center;align-items: center;
         height: 100vh;

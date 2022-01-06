@@ -512,7 +512,21 @@ main .t-element {
   overflow: hidden;
 }
 
-main #cards {
+main #closeCards {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 30px;
+  padding: 5px;
+  background-color: #abc3ca;
+  cursor: pointer;
+}
+
+main #closeCards:hover {
+  background-color: #72b1c5;
+}
+
+main .cards {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
