@@ -210,6 +210,12 @@ main{
     .card.is-flipped {
         transform: rotateY(180deg);
     }
+    .card-back-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 205px;
+    }
     .c-definition{
         font-weight: bold;
     }

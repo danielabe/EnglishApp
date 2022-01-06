@@ -7,23 +7,25 @@ window.addEventListener('load', async () => {
     const cardsContainer = document.getElementById('cardsContainer')
     const closeCards = document.getElementById('closeCards')
     let orderedWords = false
-    
+
     const cards = await fetchGetPhrases('http://localhost:3000/api/1.0/cards')
 
-    
+
     practiceBtn.addEventListener('click', () => {
         tableSection.classList.add('none')
         header.classList.add('none')
         cardsSection.classList = 'cards'
-        
+
         let i = 0
+        
         renderCard(cards[i], i)
 
-        const card = document.querySelector('.card');
-        const audio = document.querySelector('.card a')
-        const coverFront = document.querySelector('.cover-front')
-        const coverBack = document.querySelector('.cover-back')
-        const next = document.querySelector('.fa-arrow-right')
+        let card = document.querySelector('.card');
+        let audio = document.querySelector('.card a')
+        let coverFront = document.querySelector('.cover-front')
+        let coverBack = document.querySelector('.cover-back')
+        let next = document.querySelector('.fa-arrow-right')
+
         coverFront.addEventListener('click', function () {
             card.classList.toggle('is-flipped');
             audio.classList.add('disabled')
@@ -33,26 +35,51 @@ window.addEventListener('load', async () => {
             audio.classList.remove('disabled')
         });
 
-        next.addEventListener('click', () => {
-            i++
-            renderCard(cards[i], i)
-        })
-        /* cardsSection.addEventListener('click', () => {
-            i++
-            renderCard(cards[i], i)
-        }) */
+        goToNextCard(next, i)
         closeCards.addEventListener('click', () => closeCardsFunction())
     })
 
-    function closeCardsFunction(){
+    function checkNextCard(i){
+        if(cards[i]){
+            renderCard(cards[i], i)
+
+            let card = document.querySelector('.card');
+            let audio = document.querySelector('.card a')
+            let coverFront = document.querySelector('.cover-front')
+            let coverBack = document.querySelector('.cover-back')
+            let next = document.querySelector('.fa-arrow-right')
+
+            coverFront.addEventListener('click', function () {
+                card.classList.toggle('is-flipped');
+                audio.classList.add('disabled')
+            });
+            coverBack.addEventListener('click', function () {
+                card.classList.toggle('is-flipped');
+                audio.classList.remove('disabled')
+            });
+
+            goToNextCard(next, i)
+        } else {
+            closeCardsFunction()
+        }
+    }
+
+    function goToNextCard(next, i) {
+        next.addEventListener('click', () => {
+            i++
+            checkNextCard(i)
+        })
+    }
+
+    function closeCardsFunction() {
         tableSection.classList.remove('none')
         header.classList.remove('none')
         cardsSection.classList = 'none'
     }
 
-    function renderCard(card, i){
+    function renderCard(card, i) {
         cardsContainer.innerHTML = ''
-        cardsContainer.innerHTML +=   `
+        cardsContainer.innerHTML += `
                                     <div class="scene">
                                         <div class="card">
                                             <div class="card__face card__face--front">
@@ -103,7 +130,7 @@ window.addEventListener('load', async () => {
         }
     }
 
-    function renderTable(table){
+    function renderTable(table) {
         wordsList.innerHTML = ''
         wordsList.innerHTML += `<li>
                                                                 <ul class="row table-header">
@@ -115,8 +142,8 @@ window.addEventListener('load', async () => {
                                                                     <li class="t-element t-edit t-header">Options</li>
                                                                 </ul>
                                                             </li>`
-        table.forEach((row,i) => {
-          wordsList.innerHTML += `<li>
+        table.forEach((row, i) => {
+            wordsList.innerHTML += `<li>
                                                                 <ul class="row">
                                                                     <li class="t-element t-word">${row.word}
                                                                         <audio id="player-${i}" src="${row.audio}"></audio>
@@ -143,41 +170,41 @@ window.addEventListener('load', async () => {
 
     }
 
-    function orderWords(words){
+    function orderWords(words) {
         console.log(orderedWords)
         let sortedPhrases
-        if(!orderedWords){
+        if (!orderedWords) {
             sortedPhrases = orderWordsAZ(words)
             orderedWords = true
         } else {
             sortedPhrases = orderWordsZA(words)
             orderedWords = false
         }
-        
+
         console.log(sortedPhrases)
         renderTable(sortedPhrases)
     }
 
-    function orderWordsAZ(words){
+    function orderWordsAZ(words) {
         words.sort((a, b) => {
-            if (a.word.toUpperCase() > b.word.toUpperCase()) { 
+            if (a.word.toUpperCase() > b.word.toUpperCase()) {
                 return 1
             }
             if (a.word.toUpperCase() < b.word.toUpperCase()) {
-              return -1
+                return -1
             }
             return 0
         })
         return words
     }
 
-    function orderWordsZA(words){
+    function orderWordsZA(words) {
         words.sort((a, b) => {
-            if (a.word.toUpperCase() < b.word.toUpperCase()) { 
+            if (a.word.toUpperCase() < b.word.toUpperCase()) {
                 return 1
             }
             if (a.word.toUpperCase() > b.word.toUpperCase()) {
-              return -1
+                return -1
             }
             return 0
         })
