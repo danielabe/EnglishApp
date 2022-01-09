@@ -1,0 +1,34 @@
+const express = require('express')
+const router = express.Router()
+const { createUser } = require('../controllers/users')
+/* const checkOrigin = require('../middleware/origin') */
+
+router.post('/register', createUser)
+/* router.get('/', getCards)
+
+router.post('/', createCard) */
+
+/* router.get('/:id', getItem)
+
+router.patch('/:id', updateItem)
+
+router.delete('/:id', deleteItem) */
+
+module.exports = router
+
+
+
+
+
+
+/* app.post('/users/register', filterAdmin, validateFirstname,  validateLastname, validateEmail, 
+validatePassword, async (req, res) => {
+    const newUser = {
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+        email: req.body.email,
+        perfil: req.body.perfil,
+        password: req.body.password
+    }
+    createUser(newUser, req, res)
+}) */

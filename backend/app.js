@@ -16,8 +16,10 @@ const apiPaths = {
     cards: '/api/1.0/cards'
 }
 
-const userRoutes = require('./app/routes/cards')
-app.use(apiPaths.cards, userRoutes);
+const cardsRoutes = require('./app/routes/cards')
+const usersRoutes = require('./app/routes/users')
+app.use(apiPaths.cards, cardsRoutes);
+app.use(apiPaths.users, usersRoutes);
 
 const PORT = process.env.PORT || 3000;
 

@@ -35,7 +35,7 @@ const createCard = async (req, res) => {
             .then(card => {
                 const result = JSON.stringify(card)
                 console.log(result)
-                res.status(200).json(card)
+                res.status(201).json(card)
             })
 
     } catch (e) {
