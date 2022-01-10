@@ -2,6 +2,8 @@ const { httpError } = require('../helpers/handleError')
 const { db } = require("../../config/mysql")
 const usersModel = require('../models/users')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+const authConfig = require('../../config/auth')
 
 
 const createUser = async (req, res) => {
@@ -19,10 +21,38 @@ const createUser = async (req, res) => {
                 console.log({ id, firstname, lastname, email, role })
                 res.status(201).json({ id, firstname, lastname, email, role })
             })
+
     } catch (e) {
         console.log(e)
         res.status(500).send()
     }
 }
 
-module.exports = { createUser }
+const logIn = async (req, res) => {
+    const { email, password } = req.body
+
+    try {
+        usersModel.findOne({ where: { email: email }})
+            .then(user => {
+                if(!user) {
+                    res.status(404).json('User not found')
+                } else {
+                    bcrypt.compare(password, user.passwordhash, function(err, result) {
+                        if(result) {
+                            const { id, firstname, lastname, email, role } = user
+                            const token = jwt.sign({ id, firstname, lastname, email, role }, authConfig.secret)
+                            res.status(200).json({ id, firstname, lastname, email, role, token: token })
+                        } else {
+                            res.status(401).json('Wrong data')
+                        }
+                    });
+
+                }
+            })
+    
+    } catch (e) {
+        httpError(res, e)
+    }
+}
+
+module.exports = { createUser, logIn  }

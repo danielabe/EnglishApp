@@ -1,9 +1,11 @@
 const express = require('express')
 const router = express.Router()
-const { createUser } = require('../controllers/users')
+const { createUser, logIn } = require('../controllers/users')
 /* const checkOrigin = require('../middleware/origin') */
 
 router.post('/register', createUser)
+
+router.post('/login', logIn) //seguir con esto
 /* router.get('/', getCards)
 
 router.post('/', createCard) */
@@ -32,3 +34,11 @@ validatePassword, async (req, res) => {
     }
     createUser(newUser, req, res)
 }) */
+
+//login
+/* app.post('/users/login', validateLogin, async (req, res) => {
+    const { username, password } = req.body
+    selectUserLogin(username, password, req, res)
+})
+
+app.use(verifyToken) */
