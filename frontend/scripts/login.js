@@ -40,7 +40,7 @@ window.addEventListener('load', () => {
             location.href = 'frontend/welcome.html'
 
             localStorage.setItem('jwt', JSON.stringify(user.token))
-            /* localStorage.setItem('name', JSON.stringify(user.firstname)) */
+            localStorage.setItem('id', JSON.stringify(user.id))
         } catch (e) {
             console.log(e)
         }

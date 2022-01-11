@@ -56,4 +56,20 @@ const logIn = async (req, res) => {
     }
 }
 
-module.exports = { createUser, logIn  }
+const getUser = async (req, res) => {
+    try {
+        const token = req.headers.authorization.split(' ')[1]
+        const user = jwt.verify(token, authConfig.secret)
+        usersModel.findOne({ where: { id: user.id }})
+            .then(user => {
+                const { id, firstname, lastname, email, role } = user
+                res.status(200).json({ id, firstname, lastname, email, role })
+            })
+    
+    } catch (e) {
+        httpError(res, e)
+    }
+}
+
+
+module.exports = { createUser, logIn, getUser  }
