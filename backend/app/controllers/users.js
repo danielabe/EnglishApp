@@ -19,7 +19,8 @@ const createUser = async (req, res) => {
                 /* const result = JSON.stringify(newUser) */
                 const { id, firstname, lastname, email, role } = newUser
                 console.log({ id, firstname, lastname, email, role })
-                res.status(201).json({ id, firstname, lastname, email, role })
+                const token = jwt.sign({ id, firstname, lastname, email, role }, authConfig.secret)
+                res.status(201).json({ id, firstname, lastname, email, role, token })
             })
 
     } catch (e) {

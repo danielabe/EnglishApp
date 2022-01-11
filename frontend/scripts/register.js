@@ -1,28 +1,23 @@
 window.addEventListener('load', () => {
+    const signUpBtn = document.querySelector('input[type="submit"]')
+    const firstName = document.getElementById('firstName')
+    const lastName = document.getElementById('lastName')
     const email = document.getElementById('email')
     const pass = document.getElementById('pass')
-    const loginBtn = document.getElementById('loginBtn')
-    
-    /* const h1 = document.querySelector('h1')
-    const form = document.querySelector('.login-form')
-    const menu = document.querySelector('.menu')
-    const welcomeP = document.querySelectorAll('.welcome-p')
-    const mainImg = document.querySelector('.main-img') */
 
-
-    loginBtn.addEventListener('click', (e) => {
+    signUpBtn.addEventListener('click', (e) => {
         e.preventDefault()
         const user = {
+            firstname: firstName.value,
+            lastname: lastName.value,
             email: email.value,
             password: pass.value
         }
         
-        fetchLogin('http://localhost:3000/api/1.0/users/login', user)
+        fetchRegister('http://localhost:3000/api/1.0/users/register', user)
     })
 
-
-
-    async function fetchLogin(url, payload) {
+    async function fetchRegister(url, payload) {
         const settings = {
             method: 'POST',
             headers: {
@@ -36,21 +31,11 @@ window.addEventListener('load', () => {
             const user = await response.json()
             console.log(user)
 
-            /* hideLogin() */
-            location.href = 'frontend/welcome.html'
-
+            location.href = 'welcome.html'
             localStorage.setItem('jwt', JSON.stringify(user.token))
             /* localStorage.setItem('name', JSON.stringify(user.firstname)) */
         } catch (e) {
             console.log(e)
         }
     }
-
-    /* function hideLogin(){
-        form.classList.add('none')
-        menu.classList.remove('none')
-        mainImg.classList.remove('none')
-        welcomeP.forEach(el => el.classList.remove('none'))
-        h1.innerText = `Hello, ${user.firstname}`
-    } */
 })

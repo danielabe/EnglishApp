@@ -98,7 +98,7 @@ header input[type="checkbox"]:not(:checked) ~ label .close {
 }
 
 header input[type="checkbox"]:checked ~ nav ul {
-  height: 152px;
+  height: 190px;
   width: 100%;
   color: #7D7987;
 }
