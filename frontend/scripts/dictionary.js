@@ -77,6 +77,7 @@ window.addEventListener('load', () => {
 
 
     function selectWord() {
+        const token = JSON.parse(localStorage.getItem('jwt'))
         document.querySelectorAll('.element button').forEach(addBtn => {
             addBtn.addEventListener('click', (e) => {
                 console.log(e)
@@ -84,20 +85,20 @@ window.addEventListener('load', () => {
                     word: document.querySelector(`.${e.path[1].classList[1]} p`).innerText,
                     definition: document.querySelector(`.${e.path[2].classList[1]} ul li .definition`).innerText,
                     example: document.querySelector(`.${e.path[2].classList[1]} ul li .example`).innerText,
-                    audio: document.querySelector(`.${e.path[1].classList[1]} ~ audio source`).src
+                    audio: document.querySelector(`.${e.path[1].classList[1]} ~ audio source`).src,
                 }
                 console.log(card)
 
-                fetchAddWord('http://localhost:3000/api/1.0/cards', card)
+                fetchAddWord('http://localhost:3000/api/1.0/cards', card, `Bearer ${token}`)
             })
         })
     }
 
-    async function fetchAddWord(url, payload) {
+    async function fetchAddWord(url, payload, token) {
         const settings = {
             method: 'POST',
             headers: {
-                /* authorization: token, */
+                authorization: token,
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(payload)

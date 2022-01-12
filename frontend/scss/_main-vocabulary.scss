@@ -5,14 +5,17 @@ main{
         right: calc(50% - 33px);
         @media screen and (min-width: 480px) {
             top: 85px;
-            right: 15px;
+            right: 2.5%;
         }
     }
     .practice-btn{
-        width: 66px;
-        padding: 6px;
-        background-color: #ef8bbd;
-        border: 1.5px solid #440a29;
+        width: 70px;
+        padding: 9px;
+        line-height: 18px;
+        /* background-color: #ef8bbd; */
+        background-color: #72b1c5;
+        /* border: 1.5px solid #440a29; */
+        border: none;
         border-radius: 5px;
         color: #440a29;
         font-weight: 600;

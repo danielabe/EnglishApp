@@ -6,7 +6,9 @@ const cardsModel = db.define('cards', {
     "word": Sequelize.STRING,
     "definition": Sequelize.STRING,
     "example": Sequelize.STRING,
-    "audio": Sequelize.STRING
+    "audio": Sequelize.STRING,
+    "user_id": Sequelize.INTEGER,
+    "qualification": Sequelize.INTEGER,
 })
 
 module.exports = cardsModel

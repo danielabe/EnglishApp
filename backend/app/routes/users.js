@@ -1,13 +1,15 @@
 const express = require('express')
 const router = express.Router()
-const { createUser, logIn, getUser } = require('../controllers/users')
+const { createUser, logIn, getUser, getCardsFromUser } = require('../controllers/users')
 /* const checkOrigin = require('../middleware/origin') */
 
 router.post('/register', createUser)
 
 router.post('/login', logIn) 
 
-router.get('/:id', getUser)//seguir con esto
+router.get('/:id', getUser)
+
+router.get('/:id/cards', getCardsFromUser) //seguir con esto
 /* router.get('/', getCards)
 
 router.post('/', createCard) */

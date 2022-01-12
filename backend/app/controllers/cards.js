@@ -2,7 +2,8 @@ const { QueryTypes } = require('sequelize')
 const { httpError } = require('../helpers/handleError')
 const { db } = require("../../config/mysql")
 const cardsModel = require('../models/cards')
-
+const jwt = require('jsonwebtoken')
+const authConfig = require('../../config/auth')
 
 const getCards = async (req, res) => {
     try {
@@ -29,9 +30,11 @@ const getCards = async (req, res) => {
 
 const createCard = async (req, res) => {
     const { word, definition, example, audio } = req.body
+    const token = req.headers.authorization.split(' ')[1]
+    const user = jwt.verify(token, authConfig.secret)
     try {
-        await cardsModel.create({ word, definition, example, audio },
-            { fields: ['word', 'definition', 'example', 'audio'] })
+        await cardsModel.create({ word, definition, example, audio, user_id: user.id },
+            { fields: ['word', 'definition', 'example', 'audio', 'user_id'] })
             .then(card => {
                 const result = JSON.stringify(card)
                 console.log(result)

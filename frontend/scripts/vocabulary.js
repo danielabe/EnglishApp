@@ -6,9 +6,13 @@ window.addEventListener('load', async () => {
     const cardsSection = document.getElementById('cards')
     const cardsContainer = document.getElementById('cardsContainer')
     const closeCards = document.getElementById('closeCards')
+
     let orderedWords = false
 
-    const cards = await fetchGetPhrases('http://localhost:3000/api/1.0/cards')
+    const id = JSON.parse(localStorage.getItem('id'))
+    const token = JSON.parse(localStorage.getItem('jwt'))
+
+    const cards = await fetchGetPhrases(`http://localhost:3000/api/1.0/users/${id}/cards`, `Bearer ${token}`)
 
 
     practiceBtn.addEventListener('click', () => {
@@ -113,11 +117,11 @@ window.addEventListener('load', async () => {
                                     </div>`
     }
 
-    async function fetchGetPhrases(url) {
+    async function fetchGetPhrases(url, token) {
         const settings = {
             method: 'GET',
             headers: {
-                /* authorization: token, */
+                authorization: token,
             },
         }
         try {
