@@ -21,7 +21,7 @@ window.addEventListener('load', async () => {
         cardsSection.classList = 'cards'
 
         let i = 0
-        
+
         renderCard(cards[i], i)
 
         let card = document.querySelector('.card');
@@ -43,8 +43,8 @@ window.addEventListener('load', async () => {
         closeCards.addEventListener('click', () => closeCardsFunction())
     })
 
-    function checkNextCard(i){
-        if(cards[i]){
+    function checkNextCard(i) {
+        if (cards[i]) {
             renderCard(cards[i], i)
 
             let card = document.querySelector('.card');
@@ -172,10 +172,10 @@ window.addEventListener('load', async () => {
             audioIcon.classList = 'far fa-play-circle'
             editIcon.classList = 'far fa-edit'
             deleteIcon.classList = 'far fa-trash-alt'
-            
+
             audio.id = `player-${i}`
             audio.src = row.audio
-            
+
             form.name = 'formulario' //cambiar a ingles, chequear si esta en otro lado
             form.method = 'post'
             form.action = '/send.php'
@@ -185,11 +185,11 @@ window.addEventListener('load', async () => {
             meter.high = '75'
             meter.optimum = '100'
             meter.value = '50'
-            
+
             word.innerText = row.word
             definition.innerText = row.definition
             example.innerText = row.example
-            
+
             edit.appendChild(editIcon)
             edit.appendChild(deleteIcon)
             form.appendChild(meter)
@@ -205,19 +205,61 @@ window.addEventListener('load', async () => {
             ulRow.appendChild(edit)
             liRow.appendChild(ulRow)
             wordsList.appendChild(liRow)
-            
+
             linkAudio.addEventListener('click', () => audio.play())
-            deleteIcon.addEventListener('click', async () => {
-                fetchDeleteCard(`http://localhost:3000/api/1.0/cards/${row.id}`, `Bearer ${token}`)
-                
-            })
+            editIcon.addEventListener('click', () => edition(row))
+            deleteIcon.addEventListener('click', () => fetchDeleteCard(`http://localhost:3000/api/1.0/cards/${row.id}`, `Bearer ${token}`))
         })
         const sortBtn = document.querySelector('.t-word .fa-sort')
         sortBtn.addEventListener('click', () => orderWords(table))
 
     }
 
-    async function fetchDeleteCard(url, token) {
+    async function edition(row) {
+        await Swal.fire({
+            title: 'Edit phrase',
+            html:
+                `<h3>${row.word}</h3>` +
+                '<label for="swal-input1">Definition</label>' +
+                `<input id="swal-input1" class="swal2-input" value="${row.definition}">` +
+                '<label for="swal-input1">Example</label>' +
+                `<input id="swal-input2" class="swal2-input" value="${row.example}">`,
+            focusConfirm: false,
+            showCancelButton: true,
+            preConfirm: () => {
+                return [
+                    document.getElementById('swal-input1').value,
+                    document.getElementById('swal-input2').value
+                ]
+            }
+        }).then(result => {
+            console.log(result.value)
+            if (result.isConfirmed) {
+                const payload = { definition: result.value[0], example: result.value[1] }
+                fetchUpdateCard(`http://localhost:3000/api/1.0/cards/${row.id}`, `Bearer ${token}`, payload)
+            }
+        })
+    }
+
+    function fetchUpdateCard(url, token, payload) {
+        console.log()
+        const settings = {
+            method: 'PUT',
+            headers: {
+                authorization: token,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload)
+        }
+        fetch(url, settings)
+            .then(async response => {
+                cards = await fetchGetPhrases(`http://localhost:3000/api/1.0/users/${id}/cards`, token)
+                return response.json()
+            })
+            .catch(e => console.log(e))
+    }
+
+    function fetchDeleteCard(url, token) {
         const settings = {
             method: 'DELETE',
             headers: {
@@ -235,7 +277,7 @@ window.addEventListener('load', async () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 fetch(url, settings)
-                    .then(response =>  response.json())
+                    .then(response => response.json())
                     .then(data => {
                         console.log(data)
                     })
@@ -246,7 +288,7 @@ window.addEventListener('load', async () => {
                     'The phrase has been permanently removed.',
                     'success'
                 ).then(async result => {
-                    if(result.isConfirmed) {
+                    if (result.isConfirmed) {
                         cards = await fetchGetPhrases(`http://localhost:3000/api/1.0/users/${id}/cards`, token)
                     }
                 })

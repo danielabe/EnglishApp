@@ -53,9 +53,29 @@ const deleteCard = async (req, res) => {
     console.log(req.params.id)
     try{
         await cardsModel.destroy({ where: {id: req.params.id, user_id: user.id}})
+        .then(card => {
+            console.log(card)
+            res.status(200).json(card)
+        })
     } catch(e) {
         httpError(res, e)
     }
 }
 
-module.exports = { getCards, createCard, deleteCard }
+const updateCard = async (req, res) => {
+    console.log(req.body)
+    console.log(req.body.definition)
+    const token = req.headers.authorization.split(' ')[1]
+    const user = jwt.verify(token, authConfig.secret)
+    try{
+        await cardsModel.update({definition: req.body.definition, example: req.body.example}, { where: {id: req.params.id, user_id: user.id}})
+        .then(card => {
+            console.log(card)
+            res.status(200).json(card)
+        })
+    } catch(e) {
+        httpError(res, e)
+    }
+}
+
+module.exports = { getCards, createCard, deleteCard, updateCard }
