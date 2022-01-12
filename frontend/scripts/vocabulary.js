@@ -209,7 +209,7 @@ window.addEventListener('load', async () => {
             linkAudio.addEventListener('click', () => audio.play())
             deleteIcon.addEventListener('click', async () => {
                 fetchDeleteCard(`http://localhost:3000/api/1.0/cards/${row.id}`, `Bearer ${token}`)
-                cards = await fetchGetPhrases(`http://localhost:3000/api/1.0/users/${id}/cards`, `Bearer ${token}`)
+                
             })
         })
         const sortBtn = document.querySelector('.t-word .fa-sort')
@@ -224,13 +224,34 @@ window.addEventListener('load', async () => {
                 authorization: token,
             },
         }
-        try {
-            const response = await fetch(url, settings)
-            const deletedCard = await response.json()
-            return deletedCard
-        } catch (e) {
-            console.log(e)
-        }
+
+        Swal.fire({
+            title: 'Do you want to delete this phrase permanently?',
+            text: "This action cannot be reversed.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Delete',
+            cancelButtonText: `Cancel`,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(url, settings)
+                    .then(response =>  response.json())
+                    .then(data => {
+                        console.log(data)
+                    })
+                    .catch(error => console.log(error))
+
+                Swal.fire(
+                    'Phrase deleted!',
+                    'The phrase has been permanently removed.',
+                    'success'
+                ).then(async result => {
+                    if(result.isConfirmed) {
+                        cards = await fetchGetPhrases(`http://localhost:3000/api/1.0/users/${id}/cards`, token)
+                    }
+                })
+            }
+        })
     }
 
     function orderWords(words) {
