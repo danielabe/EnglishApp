@@ -46,4 +46,16 @@ const createCard = async (req, res) => {
     }
 }
 
-module.exports = { getCards, createCard }
+const deleteCard = async (req, res) => {
+    const token = req.headers.authorization.split(' ')[1]
+    const user = jwt.verify(token, authConfig.secret)
+    console.log(user)
+    console.log(req.params.id)
+    try{
+        await cardsModel.destroy({ where: {id: req.params.id, user_id: user.id}})
+    } catch(e) {
+        httpError(res, e)
+    }
+}
+
+module.exports = { getCards, createCard, deleteCard }

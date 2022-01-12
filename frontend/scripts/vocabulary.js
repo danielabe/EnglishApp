@@ -12,7 +12,7 @@ window.addEventListener('load', async () => {
     const id = JSON.parse(localStorage.getItem('id'))
     const token = JSON.parse(localStorage.getItem('jwt'))
 
-    const cards = await fetchGetPhrases(`http://localhost:3000/api/1.0/users/${id}/cards`, `Bearer ${token}`)
+    let cards = await fetchGetPhrases(`http://localhost:3000/api/1.0/users/${id}/cards`, `Bearer ${token}`)
 
 
     practiceBtn.addEventListener('click', () => {
@@ -147,31 +147,90 @@ window.addEventListener('load', async () => {
                                                                 </ul>
                                                             </li>`
         table.forEach((row, i) => {
-            wordsList.innerHTML += `<li>
-                                                                <ul class="row">
-                                                                    <li class="t-element t-word">${row.word}
-                                                                        <audio id="player-${i}" src="${row.audio}"></audio>
-                                                                        <div>
-                                                                            <a onclick="document.getElementById('player-${i}').play()"><i class="far fa-play-circle"></i></a>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="t-element t-def">${row.definition}</li>
-                                                                    <li class="t-element t-example">${row.example}</li>
-                                                                    <li class="t-element t-audio">${row.audio}</li>
-                                                                    <li class="t-element t-level">
-                                                                        <form name="formulario" method="post" action="/send.php">
-                                                                        <meter min="0" max="100"
-                                                                            low="25" high="75"
-                                                                            optimum="100" value=${"50"}>
-                                                                        </form>
-                                                                    </li>
-                                                                    <li class="t-element t-edit"><i class="far fa-edit"></i><i class="far fa-trash-alt"></i></li>
-                                                                </ul>
-                                                            </li>`
+            const liRow = document.createElement('li')
+            const ulRow = document.createElement('ul')
+            const word = document.createElement('li')
+            const definition = document.createElement('li')
+            const example = document.createElement('li')
+            const level = document.createElement('li')
+            const edit = document.createElement('li')
+            const audio = document.createElement('audio')
+            const linkAudioContainer = document.createElement('div')
+            const linkAudio = document.createElement('a')
+            const audioIcon = document.createElement('i')
+            const form = document.createElement('form')
+            const meter = document.createElement('meter')
+            const editIcon = document.createElement('i')
+            const deleteIcon = document.createElement('i')
+
+            ulRow.classList = 'row'
+            word.classList = 't-element t-word'
+            definition.classList = 't-element t-def'
+            example.classList = 't-element t-example'
+            level.classList = 't-element t-level'
+            edit.classList = 't-element t-edit'
+            audioIcon.classList = 'far fa-play-circle'
+            editIcon.classList = 'far fa-edit'
+            deleteIcon.classList = 'far fa-trash-alt'
+            
+            audio.id = `player-${i}`
+            audio.src = row.audio
+            
+            form.name = 'formulario' //cambiar a ingles, chequear si esta en otro lado
+            form.method = 'post'
+            form.action = '/send.php'
+            meter.min = '0'
+            meter.max = '100'
+            meter.low = '25'
+            meter.high = '75'
+            meter.optimum = '100'
+            meter.value = '50'
+            
+            word.innerText = row.word
+            definition.innerText = row.definition
+            example.innerText = row.example
+            
+            edit.appendChild(editIcon)
+            edit.appendChild(deleteIcon)
+            form.appendChild(meter)
+            level.appendChild(form)
+            linkAudio.appendChild(audioIcon)
+            linkAudioContainer.appendChild(linkAudio)
+            word.appendChild(audio)
+            word.appendChild(linkAudioContainer)
+            ulRow.appendChild(word)
+            ulRow.appendChild(definition)
+            ulRow.appendChild(example)
+            ulRow.appendChild(level)
+            ulRow.appendChild(edit)
+            liRow.appendChild(ulRow)
+            wordsList.appendChild(liRow)
+            
+            linkAudio.addEventListener('click', () => audio.play())
+            deleteIcon.addEventListener('click', async () => {
+                fetchDeleteCard(`http://localhost:3000/api/1.0/cards/${row.id}`, `Bearer ${token}`)
+                cards = await fetchGetPhrases(`http://localhost:3000/api/1.0/users/${id}/cards`, `Bearer ${token}`)
+            })
         })
         const sortBtn = document.querySelector('.t-word .fa-sort')
         sortBtn.addEventListener('click', () => orderWords(table))
 
+    }
+
+    async function fetchDeleteCard(url, token) {
+        const settings = {
+            method: 'DELETE',
+            headers: {
+                authorization: token,
+            },
+        }
+        try {
+            const response = await fetch(url, settings)
+            const deletedCard = await response.json()
+            return deletedCard
+        } catch (e) {
+            console.log(e)
+        }
     }
 
     function orderWords(words) {
