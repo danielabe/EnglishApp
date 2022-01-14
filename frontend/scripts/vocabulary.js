@@ -81,40 +81,113 @@ window.addEventListener('load', async () => {
         cardsSection.classList = 'none'
     }
 
-    function renderCard(card, i) {
+    function renderCard(info, i) {
         cardsContainer.innerHTML = ''
-        cardsContainer.innerHTML += `
-                                    <div class="scene">
-                                        <div class="card">
-                                            <div class="card__face card__face--front">
-                                                <div class="cover-front"></div>
-                                                <div class="card-front-container">
-                                                    <h4>${card.word}<h4/>
-                                                    <div class="audio-container">
-                                                        <audio id="playerCard-${i}" src="${card.audio}"></audio>
-                                                        <div>
-                                                            <a onclick="document.getElementById('playerCard-${i}').play()"><i class="far fa-play-circle"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="card__face card__face--back">
-                                                <div class="cover-back"></div>
-                                                <div class="card-back-container">
-                                                    <p class="c-definition">${card.definition}</p>
-                                                    <p class="c-example">${card.example}</p>
-                                                    <div class="btns-container">
-                                                        <div>
-                                                            <i class="far fa-smile"></i>
-                                                            <i class="far fa-meh"></i>
-                                                            <i class="far fa-frown"></i>
-                                                        </div>
-                                                        <i class="fas fa-arrow-right"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>`
+
+        const scene = document.createElement('div')
+        const card = document.createElement('div')
+        const faceFront = document.createElement('div')
+        const coverFront = document.createElement('div')
+        const frontContainer = document.createElement('div')
+        const word = document.createElement('h4')
+        const audioContainer = document.createElement('div')
+        const audio = document.createElement('audio')
+        const audioLinkContainer = document.createElement('div')
+        const audioLink = document.createElement('a')
+        const audioIcon = document.createElement('i')
+        const faceBack = document.createElement('div')
+        const coverBack = document.createElement('div')
+        const backContainer = document.createElement('div')
+        const definition = document.createElement('p')
+        const example = document.createElement('p')
+        const btnsContainer = document.createElement('div')
+        const emoticonsContainer = document.createElement('div')
+        const high = document.createElement('i')
+        const medium = document.createElement('i')
+        const low = document.createElement('i')
+        const arrow = document.createElement('i')
+
+        scene.classList = 'scene'
+        card.classList = 'card'
+        faceFront.classList = 'card__face card__face--front'
+        faceBack.classList = 'card__face card__face--back'
+        coverFront.classList = 'cover-front'
+        frontContainer.classList = 'card-front-container'
+        audioContainer.classList = 'audio-container'
+        audioIcon.classList = 'far fa-play-circle'
+        coverBack.classList = 'cover-back'
+        backContainer.classList = 'card-back-container'
+        definition.classList = 'c-definition'
+        example.classList = 'c-example'
+        btnsContainer.classList = 'btns-container'
+        arrow.classList = 'fas fa-arrow-right'
+        low.classList = 'far fa-frown'
+        medium.classList = 'far fa-meh'
+        high.classList = 'far fa-smile'
+
+        word.innerText = info.word
+        audio.src = info.audio
+        definition.innerText = info.definition
+        example.innerText = info.example
+
+        audioLink.appendChild(audioIcon)
+        audioLinkContainer.appendChild(audioLink)
+        audioContainer.appendChild(audio)
+        audioContainer.appendChild(audioLinkContainer)
+        frontContainer.appendChild(word)
+        frontContainer.appendChild(audioContainer)
+        faceFront.appendChild(coverFront)
+        faceFront.appendChild(frontContainer)
+
+        emoticonsContainer.appendChild(low)
+        emoticonsContainer.appendChild(medium)
+        emoticonsContainer.appendChild(high)
+        btnsContainer.appendChild(emoticonsContainer)
+        btnsContainer.appendChild(arrow)
+        backContainer.appendChild(definition)
+        backContainer.appendChild(example)
+        backContainer.appendChild(btnsContainer)
+        faceBack.appendChild(coverBack)
+        faceBack.appendChild(backContainer)
+        card.appendChild(faceFront)
+        card.appendChild(faceBack)
+        scene.appendChild(card)
+        cardsContainer.appendChild(scene)
+
+        audioLink.addEventListener('click', () => audio.play())
+        
+        let qualification
+        high.addEventListener('click', () => {
+            high.style.color = '#37D2E6'
+            medium.style.color = 'black'
+            low.style.color = 'black'
+            qualification = 100
+            qualifyPhrase(qualification, info)
+        })
+        medium.addEventListener('click', () => {
+            medium.style.color = '#E6D875'
+            high.style.color = 'black'
+            low.style.color = 'black'
+            qualification = 50
+            qualifyPhrase(qualification, info)
+        })
+        low.addEventListener('click', () => {
+            low.style.color = '#F0A061'
+            medium.style.color = 'black'
+            high.style.color = 'black'
+            qualification = 20
+            qualifyPhrase(qualification, info)
+        })
+    }
+
+    function qualifyPhrase(qualification, card) {
+        /* let qualification
+        if(icon.classList.contains('fa-smile')) qualification = 100
+        if(icon.classList.contains('fa-meh')) qualification = 50
+        if(icon.classList.contains('fa-frown')) qualification = 20 */
+        console.log(qualification)
+        const payload = { qualification }
+        fetchUpdateCard(`http://localhost:3000/api/1.0/cards/${card.id}`, `Bearer ${token}`, payload)
     }
 
     async function fetchGetPhrases(url, token) {
@@ -184,7 +257,7 @@ window.addEventListener('load', async () => {
             meter.low = '25'
             meter.high = '75'
             meter.optimum = '100'
-            meter.value = '50'
+            meter.value = row.qualification
 
             word.innerText = row.word
             definition.innerText = row.definition

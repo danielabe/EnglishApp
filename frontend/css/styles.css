@@ -575,6 +575,22 @@ main .t-level meter {
   width: 100%;
 }
 
+main .t-level meter::-webkit-meter-bar {
+  background: #e6e6e9;
+}
+
+main .t-level meter::-webkit-meter-optimum-value {
+  background: aquamarine;
+}
+
+main .t-level meter::-webkit-meter-suboptimum-value {
+  background: #E6D875;
+}
+
+main .t-level meter::-webkit-meter-even-less-good-value {
+  background: #F0A061;
+}
+
 main .t-edit {
   display: -webkit-box;
   display: -ms-flexbox;

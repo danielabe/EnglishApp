@@ -51,13 +51,13 @@ const deleteCard = async (req, res) => {
     const user = jwt.verify(token, authConfig.secret)
     console.log(user)
     console.log(req.params.id)
-    try{
-        await cardsModel.destroy({ where: {id: req.params.id, user_id: user.id}})
-        .then(card => {
-            console.log(card)
-            res.status(200).json(card)
-        })
-    } catch(e) {
+    try {
+        await cardsModel.destroy({ where: { id: req.params.id, user_id: user.id } })
+            .then(card => {
+                console.log(card)
+                res.status(200).json(card)
+            })
+    } catch (e) {
         httpError(res, e)
     }
 }
@@ -67,13 +67,22 @@ const updateCard = async (req, res) => {
     console.log(req.body.definition)
     const token = req.headers.authorization.split(' ')[1]
     const user = jwt.verify(token, authConfig.secret)
-    try{
-        await cardsModel.update({definition: req.body.definition, example: req.body.example}, { where: {id: req.params.id, user_id: user.id}})
-        .then(card => {
-            console.log(card)
-            res.status(200).json(card)
+    try {
+        await cardsModel.update({
+            definition: req.body.definition,
+            example: req.body.example,
+            qualification: req.body.qualification
+        }, {
+            where: {
+                id: req.params.id,
+                user_id: user.id
+            }
         })
-    } catch(e) {
+            .then(card => {
+                console.log(card)
+                res.status(200).json(card)
+            })
+    } catch (e) {
         httpError(res, e)
     }
 }

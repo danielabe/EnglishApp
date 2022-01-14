@@ -93,6 +93,18 @@ main{
         meter{
             width: 100%;
         }
+        meter::-webkit-meter-bar{
+            background: #e6e6e9;
+        } 
+        meter::-webkit-meter-optimum-value
+        {background: aquamarine;
+        }
+        meter::-webkit-meter-suboptimum-value{
+            background:#E6D875;
+        }
+        meter::-webkit-meter-even-less-good-value{
+            background:#F0A061;
+        }
     }
     .t-edit{
         display: flex;
