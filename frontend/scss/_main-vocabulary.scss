@@ -21,6 +21,9 @@ main{
         font-weight: 600;
         cursor: pointer;
     }
+    #table{
+        padding-bottom: 30px;
+    }
     #wordsList{
         width: 95%;
         margin: 30px auto;
@@ -96,8 +99,8 @@ main{
         meter::-webkit-meter-bar{
             background: #e6e6e9;
         } 
-        meter::-webkit-meter-optimum-value
-        {background: aquamarine;
+        meter::-webkit-meter-optimum-value{
+            background: aquamarine;
         }
         meter::-webkit-meter-suboptimum-value{
             background:#E6D875;

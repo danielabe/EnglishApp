@@ -6,6 +6,7 @@ window.addEventListener('load', async () => {
     const cardsSection = document.getElementById('cards')
     const cardsContainer = document.getElementById('cardsContainer')
     const closeCards = document.getElementById('closeCards')
+    const footer = document.querySelector('footer')
 
     let orderedWords = false
 
@@ -18,6 +19,7 @@ window.addEventListener('load', async () => {
     practiceBtn.addEventListener('click', () => {
         tableSection.classList.add('none')
         header.classList.add('none')
+        footer.classList.add('none')
         cardsSection.classList = 'cards'
 
         let i = 0
@@ -78,6 +80,7 @@ window.addEventListener('load', async () => {
     function closeCardsFunction() {
         tableSection.classList.remove('none')
         header.classList.remove('none')
+        footer.classList.remove('none')
         cardsSection.classList = 'none'
     }
 

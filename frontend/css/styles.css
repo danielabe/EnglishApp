@@ -35,6 +35,10 @@ header {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 999;
   padding: 10px;
   background-color: aquamarine;
 }
@@ -466,6 +470,10 @@ main .practice-btn {
   cursor: pointer;
 }
 
+main #table {
+  padding-bottom: 30px;
+}
+
 main #wordsList {
   width: 95%;
   margin: 30px auto;
@@ -778,5 +786,42 @@ main .c-example {
   padding-top: 10px;
   font-style: italic;
   color: #8c8c8c;
+}
+
+body {
+  margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 100vh;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+main {
+  display: block;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 auto;
+          flex: 1 0 auto;
+}
+
+footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  /* position: fixed;
+    bottom: 0; */
+  width: 100%;
+  height: 28px;
+  font-size: 14px;
+  background: #379d9d;
 }
 /*# sourceMappingURL=styles.css.map */
