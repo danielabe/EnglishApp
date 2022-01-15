@@ -9,6 +9,7 @@ window.addEventListener('load', async () => {
     const footer = document.querySelector('footer')
 
     let orderedWords = false
+    let orderedLevels = false
 
     const id = JSON.parse(localStorage.getItem('id'))
     const token = JSON.parse(localStorage.getItem('jwt'))
@@ -286,8 +287,11 @@ window.addEventListener('load', async () => {
             editIcon.addEventListener('click', () => edition(row))
             deleteIcon.addEventListener('click', () => fetchDeleteCard(`http://localhost:3000/api/1.0/cards/${row.id}`, `Bearer ${token}`))
         })
-        const sortBtn = document.querySelector('.t-word .fa-sort')
-        sortBtn.addEventListener('click', () => orderWords(table))
+        const sortWordBtn = document.querySelector('.t-word .fa-sort')
+        const sortLevelBtn = document.querySelector('.t-level .fa-sort')
+
+        sortWordBtn.addEventListener('click', () => orderWords(table))
+        sortLevelBtn.addEventListener('click', () => sortByLevel(table))
 
     }
 
@@ -370,6 +374,48 @@ window.addEventListener('load', async () => {
                 })
             }
         })
+    }
+
+    function sortByLevel(words) {
+        console.log(words)
+        words.forEach(el => console.log(el.qualification))
+        let sortedLevels
+        if (!orderedLevels) {
+            sortedLevels = orderMinMax(words)
+            orderedLevels = true
+        } else {
+            sortedLevels = orderMaxMin(words)
+            orderedLevels = false
+        }
+
+        console.log(sortedLevels)
+        renderTable(sortedLevels)
+    }
+
+    function orderMinMax(words) {
+        words.sort((a, b) => {
+            if (a.qualification > b.qualification) {
+                return 1
+            }
+            if (a.qualification < b.qualification) {
+                return -1
+            }
+            return 0
+        })
+        return words
+    }
+
+    function orderMaxMin(words) {
+        words.sort((a, b) => {
+            if (a.qualification < b.qualification) {
+                return 1
+            }
+            if (a.qualification > b.qualification) {
+                return -1
+            }
+            return 0
+        })
+        return words
     }
 
     function orderWords(words) {
