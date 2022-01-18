@@ -30,10 +30,11 @@ window.addEventListener('load', () => {
             const response = await fetch(url, settings)
             const user = await response.json()
             console.log(user)
-
-            location.href = 'welcome.html'
-            localStorage.setItem('jwt', JSON.stringify(user.token))
-            localStorage.setItem('id', JSON.stringify(user.id))
+            if(response.status === 201) {
+                location.href = 'welcome.html'
+                localStorage.setItem('jwt', JSON.stringify(user.token))
+                localStorage.setItem('id', JSON.stringify(user.id))
+            }
         } catch (e) {
             console.log(e)
         }

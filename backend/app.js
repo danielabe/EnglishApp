@@ -24,5 +24,5 @@ app.use(apiPaths.users, usersRoutes);
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-    console.log('API lista por el puerto', PORT)
+    console.log('server started on port', PORT)
 })

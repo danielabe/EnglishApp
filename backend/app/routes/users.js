@@ -1,9 +1,11 @@
 const express = require('express')
 const router = express.Router()
 const { createUser, logIn, getUser, getCardsFromUser } = require('../controllers/users')
+const { checkAuth } = require('../middleware/auth')
+const { validateUser } = require('../middleware/validateUser')
 /* const checkOrigin = require('../middleware/origin') */
 
-router.post('/register', createUser)
+router.post('/register', validateUser, createUser)
 
 router.post('/login', logIn) 
 

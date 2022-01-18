@@ -32,7 +32,6 @@ const createUser = async (req, res) => {
 
 const logIn = async (req, res) => {
     const { email, password } = req.body
-
     try {
         usersModel.findOne({ where: { email: email }})
             .then(user => {
@@ -47,11 +46,9 @@ const logIn = async (req, res) => {
                         } else {
                             res.status(401).json('Wrong data')
                         }
-                    });
-
+                    })
                 }
             })
-    
     } catch (e) {
         httpError(res, e)
     }
