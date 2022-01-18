@@ -58,7 +58,6 @@ const deleteCard = async (req, res) => {
 
 const updateCard = async (req, res) => {
     console.log(req.body)
-    console.log(req.body.definition)
     const token = req.headers.authorization.split(' ')[1]
     const user = jwt.verify(token, authConfig.secret)
     try {
