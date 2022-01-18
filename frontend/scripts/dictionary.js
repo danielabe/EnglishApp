@@ -30,11 +30,12 @@ window.addEventListener('load', () => {
                                                             <p>${info.message}</p>
                                                         </div>`
         } else info.forEach((element, i) => {
-            document.getElementById('words').style = "display: flex"
+            document.getElementById('words').style = "display: flex" //pasar a css
+            const audio = element.phonetics[0].audio ? element.phonetics[0].audio : ''
             list.innerHTML += `<li class="element element-${i}">
                                         <h3 class="word w-${i}"><p>${element.word} </p><span>/${element.phonetic}/</span><button>Add</button></h3> 
                                         <audio controls>
-                                            <source src=${element.phonetics[0].audio} type="audio/mp3">
+                                            <source src="${audio}" type="audio/mp3">
                                                 Tu navegador no soporta audio HTML5.
                                         </audio>
                                         <ul class="meaning-${i}"></ul>
@@ -48,10 +49,10 @@ window.addEventListener('load', () => {
             }
 
             element.meanings.forEach((meaning, j) => {
-                document.querySelector(`.meaning-${i}`).innerHTML += `<li>
-                                                                                <p class="pos-${i}${j} part-of-speech">${meaning.partOfSpeech}</p>
-                                                                                <ul class="definition-list definition-${i}${j}"></ul>
-                                                                            </li>`
+                document.querySelector(`.meaning-${i}`).innerHTML += `  <li>
+                                                                            <p class="pos-${i}${j} part-of-speech">${meaning.partOfSpeech}</p>
+                                                                            <ul class="definition-list definition-${i}${j}"></ul>
+                                                                        </li>`
                 /* console.log(meaning.partOfSpeech)
                 console.log(document.querySelector(`.pos-${i}${j}`)) */
                 if (!meaning.partOfSpeech) {
