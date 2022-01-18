@@ -8,12 +8,10 @@ const authConfig = require('../../config/auth')
 
 
 const createUser = async (req, res) => {
-
     try {
         const { firstname, lastname, email, password } = req.body
         const passwordhash = await bcrypt.hash(password, 10)
         const role = "user"
-
         await usersModel.create({ firstname, lastname, email, passwordhash, role },
             { fields: ['firstname', 'lastname', 'email', 'passwordhash', 'role'] })
             .then(newUser => {
@@ -23,7 +21,6 @@ const createUser = async (req, res) => {
                 const token = jwt.sign({ id, firstname, lastname, email, role }, authConfig.secret)
                 res.status(201).json({ id, firstname, lastname, email, role, token })
             })
-
     } catch (e) {
         console.log(e)
         res.status(500).send()

@@ -428,7 +428,7 @@ main #words .synonyms {
   font-size: 14px;
 }
 
-main #words .synonyms span {
+main #words .synonyms .synonyms-title {
   font-size: 15px;
   -webkit-text-decoration: underline 1.3px;
           text-decoration: underline 1.3px;
