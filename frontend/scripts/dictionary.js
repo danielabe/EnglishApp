@@ -123,11 +123,14 @@ window.addEventListener('load', () => {
 
             })
             addBtn.addEventListener('click', () => {
+                let audioUrl =  element.phonetics[0].audio
+                if(element.phonetics[0].audio == 'undefined') audioUrl = ''
+    
                 const card = {
                     word: wordP.innerText,
                     definition: element.meanings[0].definitions[0].definition,
                     example: element.meanings[0].definitions[0].example,
-                    audio: element.phonetics[0].audio,
+                    audio: audioUrl,
                 }
                 const token = JSON.parse(localStorage.getItem('jwt'))
                 console.log(card)
