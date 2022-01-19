@@ -668,8 +668,8 @@ main .cards {
 }
 
 main .scene {
-  width: 200px;
-  height: 260px;
+  width: 220px;
+  height: 286px;
   -webkit-perspective: 600px;
           perspective: 600px;
 }
