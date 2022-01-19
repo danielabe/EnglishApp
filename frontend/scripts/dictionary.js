@@ -3,19 +3,23 @@ window.addEventListener('load', () => {
     const sendBtn = document.querySelector('.search-btn')
     const list = document.getElementById('words')
 
-    const urlBase = 'http://api.dictionaryapi.dev/api/v2/entries/en/'
+    const urlBase = 'https://api.dictionaryapi.dev/api/v2/entries/en/'
 
     sendBtn.addEventListener('click', (e) => {
+        console.log('anda')
         e.preventDefault()
         getWord(urlBase, input.value)
     })
 
-    function getWord(url, word) {
+    async function getWord(url, word) {
         list.innerHTML = ''
-        fetch(`${url}${word}`)
-            .then(response => response.json())
-            .then(data => renderDefinitions(data))
-            .catch(error => console.log(error))
+        try{
+            const response = await fetch(`${url}${word}`)
+            const data = await response.json()
+            renderDefinitions(data)
+        } catch (e) {
+            console.log(e)
+        }
     }
 
     function renderDefinitions(info) {
@@ -149,4 +153,6 @@ window.addEventListener('load', () => {
             console.log(e)
         }
     }
+
+    document.querySelector('.clear-search').addEventListener('click', () => input.value = '')
 })
