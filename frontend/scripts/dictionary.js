@@ -3,7 +3,7 @@ window.addEventListener('load', () => {
     const sendBtn = document.querySelector('.search-btn')
     const list = document.getElementById('words')
 
-    const urlBase = 'https://api.dictionaryapi.dev/api/v2/entries/en/'
+    const urlBase = 'http://api.dictionaryapi.dev/api/v2/entries/en/'
 
     sendBtn.addEventListener('click', (e) => {
         e.preventDefault()
@@ -14,9 +14,7 @@ window.addEventListener('load', () => {
         list.innerHTML = ''
         fetch(`${url}${word}`)
             .then(response => response.json())
-            .then(data => {
-                renderDefinitions(data)
-            })
+            .then(data => renderDefinitions(data))
             .catch(error => console.log(error))
     }
 
