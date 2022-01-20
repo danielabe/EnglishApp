@@ -134,9 +134,9 @@ window.addEventListener('load', () => {
             addBtn.addEventListener('click', () => {
                 let audioUrl =  element.phonetics[0].audio
                 if(element.phonetics[0].audio == 'undefined') audioUrl = ''
-    
                 const card = {
                     word: wordP.innerText,
+                    phonetic: element.phonetic,
                     definition: element.meanings[0].definitions[0].definition,
                     example: element.meanings[0].definitions[0].example,
                     audio: audioUrl,

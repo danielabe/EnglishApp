@@ -17,7 +17,7 @@ const getCards = async (req, res) => {
 }
 
 const createCard = async (req, res) => {
-    let { word, definition, example, audio } = req.body
+    let { word, phonetic, definition, example, audio } = req.body
     const token = req.headers.authorization.split(' ')[1]
     const user = jwt.verify(token, authConfig.secret)
 
@@ -25,8 +25,8 @@ const createCard = async (req, res) => {
     example = example == 'undefined' ? '' : example
 
     try {
-        await cardsModel.create({ word, definition, example, audio, user_id: user.id },
-            { fields: ['word', 'definition', 'example', 'audio', 'user_id'] })
+        await cardsModel.create({ word, phonetic, definition, example, audio, user_id: user.id },
+            { fields: ['word', 'phonetic', 'definition', 'example', 'audio', 'user_id'] })
             .then(card => {
                 const result = JSON.stringify(card)
                 console.log(result)
