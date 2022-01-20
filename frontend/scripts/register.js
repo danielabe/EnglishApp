@@ -26,9 +26,13 @@ window.addEventListener('load', () => {
             },
             body: JSON.stringify(payload)
         }
+        /* document.getElementById('spinner').scrollTop = document.getElementById('spinner').scrollHeight; */
+        showSpinner()
+        window.scrollTo(0,document.body.scrollHeight)
         try {
             const response = await fetch(url, settings)
             const user = await response.json()
+            hideSpinner()
             console.log(user)
             if(response.status === 201) {
                 location.href = 'welcome.html'
