@@ -295,7 +295,7 @@ main .search-container input[type="text"] {
   border: 1px solid #d9d6d6;
   height: 40px;
   padding: 2px 10px;
-  font-size: 12px;
+  font-size: 14px;
   width: calc(100% - 30px);
   max-width: 350px;
   background-color: #f9f8f8;
@@ -808,6 +808,38 @@ main .c-example {
   padding-top: 10px;
   font-style: italic;
   color: #8c8c8c;
+}
+
+.input-container {
+  padding: 10px 0;
+  text-align: left;
+}
+
+.swal-input {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #d9d6d6;
+  height: 40px;
+  padding: 2px 10px;
+  font-size: 14px;
+  background-color: #f9f8f8;
+  outline: none;
+}
+
+.swal2-styled.swal2-confirm {
+  font-weight: 600;
+  background-color: #72b1c5;
+  color: #440a29;
+}
+
+.swal2-cancel.swal2-styled {
+  font-weight: 600;
+  background-color: #eaeaeb;
+  color: #440a29;
+}
+
+.swal2-confirm.swal2-styled {
+  outline: white 4px solid;
 }
 
 body {

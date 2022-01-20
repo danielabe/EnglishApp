@@ -10,11 +10,15 @@ async function edition(row) {
     await Swal.fire({
         title: 'Edit phrase',
         html:
-            `<h3>${row.word}</h3>` +
-            '<label for="swal-input1">Definition</label>' +
-            `<input id="swal-input1" class="swal2-input" value="${row.definition}">` +
-            '<label for="swal-input1">Example</label>' +
-            `<input id="swal-input2" class="swal2-input" value="${row.example}">`,
+            `<h3>${row.word}</h3>
+            <div class="input-container">
+                <label class="" for="swal-input1">Definition</label>
+                <input class="swal-input" id="swal-input1" class="swal2-input" value="${row.definition}">
+            </div>
+            <div class="input-container">
+                <label class="" for="swal-input1">Example</label>
+                <input class="swal-input" id="swal-input2" class="swal2-input" value="${row.example}">
+            </div>`,
         focusConfirm: false,
         showCancelButton: true,
         preConfirm: () => {
