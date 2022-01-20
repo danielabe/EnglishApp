@@ -11,8 +11,13 @@ window.addEventListener('load', () => {
         getWord(urlBase, input.value)
     })
 
+    input.addEventListener('keydown', (e) => {
+        if(e.key === 'Enter') {
+            getWord(urlBase, input.value)
+        }
+    })
+
     async function getWord(url, word) {
-        list.innerHTML = ''
         try{
             const response = await fetch(`${url}${word}`)
             const data = await response.json()
@@ -24,8 +29,9 @@ window.addEventListener('load', () => {
 
     function renderDefinitions(info) {
         console.log(info)
-
+        list.innerHTML = ''
         if (typeof info.length != 'number') {
+            list.innerHTML = ''
             document.getElementById('words').style = "display: none"
             document.querySelector('main').innerHTML += `<div class="not-found">
                                                             <h3>${info.title}</h3>

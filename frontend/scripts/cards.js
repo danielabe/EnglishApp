@@ -145,6 +145,7 @@ function goToNextCard(next, i) {
 }
 
 function checkNextCard(i) {
+    console.log(cards[i])
     if (cards[i]) {
         renderCard(cards[i], i)
 
