@@ -102,7 +102,7 @@ header input[type="checkbox"]:not(:checked) ~ label .close {
 }
 
 header input[type="checkbox"]:checked ~ nav ul {
-  height: 190px;
+  height: 152px;
   width: 100%;
   color: #7D7987;
 }
@@ -453,6 +453,12 @@ main .not-found {
 
 main .not-found p {
   padding: 10px 60px 0;
+}
+
+main #spinner {
+  width: 100px;
+  margin: 0 auto;
+  display: none;
 }
 
 main .none {

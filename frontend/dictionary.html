@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="css/styles.css">
     <title>English App</title>
 
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+    
     <!-- ----------------------------- sweet alert ----------------------------- -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
@@ -28,7 +30,7 @@
                 <ul>
                     <li><a href="welcome.html">Home</a></li>
                     <li><a href="dictionary.html">Dictionary</a></li>
-                    <li><a href="texts.html">Texts</a></li>
+                    <!-- <li><a href="texts.html">Texts</a></li> -->
                     <li><a href="vocabulary.html">Vocabulary</a></li>
                     <li><a id="logOut" href="#">Log Out</a></li>
                 </ul>
@@ -38,17 +40,21 @@
 
     <main>
         <h1>English Dictionary</h1>
-        <p class="label">Write a word<img class="pen" src="images/pen.png" alt="Pen"></p> 
+        <p class="label">Write a word<img class="pen" src="images/pen.png" alt="Pen"></p>
         <div class="search-container">
             <form action="">
                 <input type="text" id="search" placeholder="example" onkeypress="return event.keyCode != 13">
                 <img class="clear-search" src="images/close.png" alt="Clear">
-                <button class="search-btn"><img class="search-img" src="images/magnifying-glass.png" alt="Magnifying Glass"></button>
+                <button class="search-btn"><img class="search-img" src="images/magnifying-glass.png"
+                        alt="Magnifying Glass"></button>
             </form>
+        </div>
+        <div>
+            <img id="spinner" src="images/Spinner.gif" alt="Spinner">
         </div>
         <ul id="words"></ul>
     </main>
-    
+
     <footer>Dani Dev</footer>
     <script src="scripts/dictionary.js"></script>
     <script src="scripts/logout.js"></script>

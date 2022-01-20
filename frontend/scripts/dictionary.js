@@ -19,9 +19,12 @@ window.addEventListener('load', () => {
     })
 
     async function getWord(url, word) {
+        list.innerHTML = ''
+        showSpinner()
         try{
             const response = await fetch(`${url}${word}`)
             const data = await response.json()
+            hideSpinner()
             renderDefinitions(data)
         } catch (e) {
             console.log(e)
@@ -165,3 +168,13 @@ window.addEventListener('load', () => {
 
     document.querySelector('.clear-search').addEventListener('click', () => input.value = '')
 })
+
+function showSpinner() {
+    const imgSpinner = document.getElementById('spinner')
+    imgSpinner.style.display = 'block'
+}
+
+function hideSpinner() {
+    const imgSpinner = document.getElementById('spinner')
+    imgSpinner.style.display = 'none'
+}
