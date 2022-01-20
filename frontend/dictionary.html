@@ -41,7 +41,7 @@
         <p class="label">Write a word<img class="pen" src="images/pen.png" alt="Pen"></p> 
         <div class="search-container">
             <form action="">
-                <input type="text" id="search" placeholder="example">
+                <input type="text" id="search" placeholder="example" onkeypress="return event.keyCode != 13">
                 <img class="clear-search" src="images/close.png" alt="Clear">
                 <button class="search-btn"><img class="search-img" src="images/magnifying-glass.png" alt="Magnifying Glass"></button>
             </form>

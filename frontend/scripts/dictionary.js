@@ -11,7 +11,8 @@ window.addEventListener('load', () => {
         getWord(urlBase, input.value)
     })
 
-    input.addEventListener('keydown', (e) => {
+    input.addEventListener('keyup', (e) => {
+        e.preventDefault()
         if(e.key === 'Enter') {
             getWord(urlBase, input.value)
         }
@@ -31,7 +32,6 @@ window.addEventListener('load', () => {
         console.log(info)
         list.innerHTML = ''
         if (typeof info.length != 'number') {
-            list.innerHTML = ''
             document.getElementById('words').style = "display: none"
             document.querySelector('main').innerHTML += `<div class="not-found">
                                                             <h3>${info.title}</h3>
