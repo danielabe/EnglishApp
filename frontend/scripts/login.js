@@ -31,26 +31,20 @@ window.addEventListener('load', () => {
             },
             body: JSON.stringify(payload)
         }
+        showSpinner()
         try {
             const response = await fetch(url, settings)
             const user = await response.json()
+            hideSpinner()
             console.log(user)
-
-            /* hideLogin() */
-            location.href = 'frontend/welcome.html'
-
-            localStorage.setItem('jwt', JSON.stringify(user.token))
-            localStorage.setItem('id', JSON.stringify(user.id))
+    
+            if(response.status === 200) {
+                location.href = 'frontend/welcome.html'
+                localStorage.setItem('jwt', JSON.stringify(user.token))
+                localStorage.setItem('id', JSON.stringify(user.id))
+            }
         } catch (e) {
             console.log(e)
         }
     }
-
-    /* function hideLogin(){
-        form.classList.add('none')
-        menu.classList.remove('none')
-        mainImg.classList.remove('none')
-        welcomeP.forEach(el => el.classList.remove('none'))
-        h1.innerText = `Hello, ${user.firstname}`
-    } */
 })

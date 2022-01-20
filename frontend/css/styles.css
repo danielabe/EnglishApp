@@ -180,6 +180,12 @@ main h1 {
   color: #440a29;
 }
 
+main #spinner {
+  width: 100px;
+  margin: 0 auto;
+  display: none;
+}
+
 main .welcome-p {
   width: 240px;
   margin: 0 auto;
@@ -203,7 +209,7 @@ main .login-form {
   width: 80%;
   max-width: 415px;
   margin: 0 auto;
-  padding-bottom: 50px;
+  padding-bottom: 20px;
 }
 
 main .login-form a {
@@ -453,12 +459,6 @@ main .not-found {
 
 main .not-found p {
   padding: 10px 60px 0;
-}
-
-main #spinner {
-  width: 100px;
-  margin: 0 auto;
-  display: none;
 }
 
 main .none {

@@ -6,6 +6,11 @@ main{
         text-align: center;
         color: #440a29;
     }
+    #spinner{
+        width: 100px;
+        margin: 0 auto;
+        display: none;
+    }
     .welcome-p{
         width: 240px;
         margin: 0 auto;
@@ -24,7 +29,7 @@ main{
         width: 80%;
         max-width: 415px;
         margin: 0 auto;
-        padding-bottom: 50px;
+        padding-bottom: 20px;
         a{
             color: #72b1c5;
             color: #00669F;
