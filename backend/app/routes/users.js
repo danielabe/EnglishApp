@@ -3,7 +3,6 @@ const router = express.Router()
 const { createUser, logIn, getUser, getCardsFromUser } = require('../controllers/users')
 const { checkAuth } = require('../middleware/auth')
 const { validateUser } = require('../middleware/validateUser')
-/* const checkOrigin = require('../middleware/origin') */
 
 router.post('/register', validateUser, createUser)
 
@@ -11,40 +10,10 @@ router.post('/login', logIn)
 
 router.get('/:id', getUser)
 
-router.get('/:id/cards', getCardsFromUser) //seguir con esto
-/* router.get('/', getCards)
+router.get('/:id/cards', getCardsFromUser)
 
-router.post('/', createCard) */
+/* router.get('/', getCards) */
 
-/* router.get('/:id', getItem)
-
-router.patch('/:id', updateItem)
-
-router.delete('/:id', deleteItem) */
+/* router.delete('/:id', deleteItem) */
 
 module.exports = router
-
-
-
-
-
-
-/* app.post('/users/register', filterAdmin, validateFirstname,  validateLastname, validateEmail, 
-validatePassword, async (req, res) => {
-    const newUser = {
-        firstname: req.body.firstname,
-        lastname: req.body.lastname,
-        email: req.body.email,
-        perfil: req.body.perfil,
-        password: req.body.password
-    }
-    createUser(newUser, req, res)
-}) */
-
-//login
-/* app.post('/users/login', validateLogin, async (req, res) => {
-    const { username, password } = req.body
-    selectUserLogin(username, password, req, res)
-})
-
-app.use(verifyToken) */

@@ -1,6 +1,4 @@
-const { QueryTypes } = require('sequelize')
 const { httpError } = require('../helpers/handleError')
-const { db } = require("../../config/mysql")
 const cardsModel = require('../models/cards')
 const jwt = require('jsonwebtoken')
 const authConfig = require('../../config/auth')
