@@ -166,7 +166,10 @@ window.addEventListener('load', () => {
         }
     }
 
-    document.querySelector('.clear-search').addEventListener('click', () => input.value = '')
+    document.querySelector('.clear-search').addEventListener('click', () => {
+        input.focus();
+        input.select();
+        input.value = ''})
 })
 
 function showSpinner() {
