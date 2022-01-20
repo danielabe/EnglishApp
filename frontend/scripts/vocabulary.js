@@ -208,7 +208,7 @@ function renderTable(table) {
         edit.appendChild(deleteIcon)
         form.appendChild(meter)
         level.appendChild(form)
-        linkAudio.appendChild(audioIcon)
+        if(row.audio) linkAudio.appendChild(audioIcon)
         linkAudioContainer.appendChild(linkAudio)
         word.appendChild(audio)
         word.appendChild(linkAudioContainer)

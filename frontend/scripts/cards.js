@@ -87,7 +87,7 @@ function renderCard(info, i) {
     definition.innerText = info.definition
     example.innerText = info.example
 
-    audioLink.appendChild(audioIcon)
+    if(info.audio) audioLink.appendChild(audioIcon)
     audioLinkContainer.appendChild(audioLink)
     audioContainer.appendChild(audio)
     audioContainer.appendChild(audioLinkContainer)
