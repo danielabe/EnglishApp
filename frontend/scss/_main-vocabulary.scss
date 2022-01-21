@@ -9,7 +9,8 @@ main{
         }
     }
     .practice-btn{
-        width: 70px;
+        /* width: 70px; */
+        width: auto;
         padding: 9px;
         line-height: 18px;
         /* background-color: #ef8bbd; */
@@ -21,10 +22,16 @@ main{
         font-weight: 600;
         cursor: pointer;
     }
+    .dictionary-btn{
+        align-self: center;
+        margin: 30px 0 0 0;
+    }
     #table{
         padding-bottom: 30px;
     }
     #wordsList{
+        display: flex;
+        flex-direction: column;
         width: 95%;
         margin: 30px auto;
         .table-header{

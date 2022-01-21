@@ -8,6 +8,11 @@ const footer = document.querySelector('footer')
 
 let isQualified
 
+window.addEventListener('load', async () => {
+    let cards = await fetchGetPhrases(`http://localhost:3000/api/1.0/users/${id}/cards`, `Bearer ${token}`)
+    if(cards.length !== 0) practiceBtn.classList.remove('none')
+})
+
 practiceBtn.addEventListener('click', async () => {
     let cards = await fetchGetPhrases(`http://localhost:3000/api/1.0/users/${id}/cards`, `Bearer ${token}`)
 

@@ -335,6 +335,19 @@ main .search-container .search-img {
   width: 30px;
 }
 
+main .no-phrases {
+  width: 240px;
+  margin: 0 auto;
+  font-size: 20px;
+  text-align: center;
+}
+
+@media screen and (min-width: 480px) {
+  main .no-phrases {
+    width: 410px;
+  }
+}
+
 main #words {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -479,7 +492,8 @@ main .practice-btn-container {
 }
 
 main .practice-btn {
-  width: 70px;
+  /* width: 70px; */
+  width: auto;
   padding: 9px;
   line-height: 18px;
   /* background-color: #ef8bbd; */
@@ -492,11 +506,25 @@ main .practice-btn {
   cursor: pointer;
 }
 
+main .dictionary-btn {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  margin: 30px 0 0 0;
+}
+
 main #table {
   padding-bottom: 30px;
 }
 
 main #wordsList {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   width: 95%;
   margin: 30px auto;
 }

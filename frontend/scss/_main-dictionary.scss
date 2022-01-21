@@ -59,6 +59,15 @@ main{
             width: 30px;
         }
     }
+    .no-phrases{
+        width: 240px;
+        margin: 0 auto;
+        font-size: 20px;
+        text-align: center;
+        @media screen and (min-width: 480px) {
+            width: 410px;
+        }
+    }
     #words{
         display: flex;
         flex-direction: column;
