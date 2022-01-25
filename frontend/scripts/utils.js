@@ -21,6 +21,7 @@ async function fetchAddWord(url, payload, token) {
         const response = await fetch(url, settings)
         const card = await response.json()
         console.log(card)
+        return card
     } catch (e) {
         console.log(e)
     }
