@@ -11,7 +11,7 @@
 
     <!-- ----------------------------- sweet alert ----------------------------- -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -44,24 +44,41 @@
     </header>
 
     <main>
-        <section id="table">
-            <div class="practice-btn-container">
-                <button id="practiceBtn" class="practice-btn none">Practice</button>
+        <h1>Create cards</h1>
+        <p class="welcome-p">Add your own cards.</p>
+        <form class="login-form" action="" method="POST">
+            <div class="lb-inp"> 
+                <label for="word">Word/Phrase</label>
+                <input type="text" id="word" name="word" placeholder="take" autofocus>
             </div>
-            <!-- <div>+</div> -->
-            <h1>Vocabulary</h1>
-            <ul id="wordsList"></ul>
-        </section>
-        <section id="cards" class="none">
-            <img id="closeCards" class="close" src="./images/close.png" alt="Close Cards"></img>
-            <div id="cardsContainer"></div>
-        </section>
+            <div class="lb-inp"> 
+                <label for="phonetic">Phonetic</label>
+                <input type="text" id="phonetic" name="phonetic" placeholder="teɪk" autofocus>
+            </div>
+            <div class="lb-inp"> 
+                <label for="definition">Definition</label>
+                <input type="text" id="definition" name="definition" placeholder="consume as food, drink, medicine, or drugs." autofocus>
+            </div>
+            <div class="lb-inp"> 
+                <label for="example">Example</label>
+                <input type="example" id="example" name="example" placeholder="take an aspirin and lie down">
+            </div>
+            <div class="lb-inp"> 
+                <label for="audio">Audio</label>
+                <input type="audio" id="audio" name="audio" placeholder="//file.mp3">
+            </div>
+            <input type="submit" value="Create">
+            <div>
+                <img id="spinner" src="images/Spinner.gif" alt="Spinner">
+            </div>
+        </form>
+
     </main>
 
     <footer>Dani Dev</footer>
-    <script defer src="scripts/vocabulary.js"></script>
-    <script defer src="scripts/cards.js"></script>
+    <script src="scripts/create.js"></script>
     <script src="scripts/logout.js"></script>
+    <script src="scripts/utils.js"></script>
 </body>
 
 </html>

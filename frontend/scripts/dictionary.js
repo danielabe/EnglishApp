@@ -148,24 +148,6 @@ window.addEventListener('load', () => {
         })
     }
 
-    async function fetchAddWord(url, payload, token) {
-        const settings = {
-            method: 'POST',
-            headers: {
-                authorization: token,
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(payload)
-        }
-        try {
-            const response = await fetch(url, settings)
-            const card = await response.json()
-            console.log(card)
-        } catch (e) {
-            console.log(e)
-        }
-    }
-
     document.querySelector('.clear-search').addEventListener('click', () => {
         input.focus();
         input.select();

@@ -158,7 +158,9 @@ function renderTable(table) {
     wordsList.innerHTML = ''
     if(table.length === 0){
         wordsList.innerHTML += `<p class="no-phrases">Add words and phrases from the dictionary to start practicing.</p>
-                                <a class="dictionary-btn practice-btn" href="dictionary.html">Dictionary</a>`
+                                <a class="dictionary-btn practice-btn" href="dictionary.html">Dictionary</a>
+                                <p class="no-phrases">Also, you can create your own cards.</p>
+                                <button >Create</button>`
     }
     else {
         wordsList.innerHTML += `<li>

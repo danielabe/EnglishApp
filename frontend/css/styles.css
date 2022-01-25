@@ -102,7 +102,7 @@ header input[type="checkbox"]:not(:checked) ~ label .close {
 }
 
 header input[type="checkbox"]:checked ~ nav ul {
-  height: 152px;
+  height: 190px;
   width: 100%;
   color: #7D7987;
 }
@@ -495,6 +495,7 @@ main .practice-btn {
   /* width: 70px; */
   width: auto;
   padding: 9px;
+  font-size: 14px;
   line-height: 18px;
   /* background-color: #ef8bbd; */
   background-color: #72b1c5;
@@ -510,7 +511,7 @@ main .dictionary-btn {
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
-  margin: 30px 0 0 0;
+  margin: 30px 0;
 }
 
 main #table {

@@ -1,4 +1,4 @@
-const practiceBtn = document.querySelector('.practice-btn')
+const practiceBtn = document.getElementById('practiceBtn')
 const header = document.querySelector('header')
 const tableSection = document.getElementById('table')
 const cardsSection = document.getElementById('cards')
@@ -10,7 +10,8 @@ let isQualified
 
 window.addEventListener('load', async () => {
     let cards = await fetchGetPhrases(`http://localhost:3000/api/1.0/users/${id}/cards`, `Bearer ${token}`)
-    if(cards.length !== 0) practiceBtn.classList.remove('none')
+    console.log(cards.length)
+    if(cards.length != 0) practiceBtn.classList.remove('none')
 })
 
 practiceBtn.addEventListener('click', async () => {
