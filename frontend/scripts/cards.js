@@ -10,11 +10,14 @@ let isQualified
 
 window.addEventListener('load', async () => {
     let cards = await fetchGetPhrases(`http://localhost:3000/api/1.0/users/${id}/cards`, `Bearer ${token}`)
-    if(cards.length != 0) practiceBtn.classList.remove('none')
+    if (cards.length != 0) practiceBtn.classList.remove('none')
 })
 
 practiceBtn.addEventListener('click', async () => {
     let cards = await fetchGetPhrases(`http://localhost:3000/api/1.0/users/${id}/cards`, `Bearer ${token}`)
+    console.log(cards)
+
+    const phrases = selectCards(cards)
 
     tableSection.classList.add('none')
     header.classList.add('none')
@@ -23,7 +26,7 @@ practiceBtn.addEventListener('click', async () => {
 
     let i = 0
 
-    renderCard(cards[i], i)
+    renderCard(phrases[i], i)
 
     let card = document.querySelector('.card')
     let audio = document.querySelector('.card a')
@@ -40,10 +43,38 @@ practiceBtn.addEventListener('click', async () => {
         audio.classList.remove('disabled')
     })
 
-    goToNextCard(next, i, cards)
+    goToNextCard(next, i, phrases)
     closeCards.addEventListener('click', () => closeCardsFunction())
 })
 
+function selectCards(cards) {
+    cards.sort(
+        function (a, b) {
+            if (a.qualification === b.qualification) return b.date - a.date;
+            return a.qualification > b.qualification ? 1 : -1
+        })
+
+    let phrases1 = cards.splice(0, 3)
+
+    let randomElement = cards[Math.floor(Math.random() * cards.length)]
+    cards = cards.filter(el => el != randomElement)
+    phrases1.push(randomElement)
+
+    randomElement = cards[Math.floor(Math.random() * cards.length)]
+    cards = cards.filter(el => el != randomElement)
+    phrases1.push(randomElement)
+
+    let phrases = [...phrases1]
+    let phrases2 = [...phrases1]
+    phrases2.sort(function () { return Math.random() - 0.5 })
+    phrases = phrases.concat(...phrases2)
+
+    let phrases3 = [...phrases2]
+    phrases3.sort(function () { return Math.random() - 0.5 })
+    phrases = phrases.concat(...phrases3)
+
+    return phrases
+}
 
 function renderCard(info, i) {
     isQualified = false
@@ -95,7 +126,7 @@ function renderCard(info, i) {
     definition.innerText = info.definition
     example.innerText = info.example
 
-    if(info.audio) audioLink.appendChild(audioIcon)
+    if (info.audio) audioLink.appendChild(audioIcon)
     audioLinkContainer.appendChild(audioLink)
     audioContainer.appendChild(audio)
     audioContainer.appendChild(audioLinkContainer)
@@ -153,7 +184,7 @@ function renderCard(info, i) {
 
 function goToNextCard(next, i, cards) {
     next.addEventListener('click', () => {
-        if(isQualified){
+        if (isQualified) {
             i++
             checkNextCard(i, cards)
         }
@@ -162,28 +193,28 @@ function goToNextCard(next, i, cards) {
 
 function checkNextCard(i, cards) {
     console.log(cards[i])
-        if (cards[i]) {
-            renderCard(cards[i], i)
-    
-            let card = document.querySelector('.card')
-            let audio = document.querySelector('.card a')
-            let coverFront = document.querySelector('.cover-front')
-            let coverBack = document.querySelector('.cover-back')
-            let next = document.querySelector('.fa-arrow-right')
-    
-            coverFront.addEventListener('click', function () {
-                card.classList.toggle('is-flipped')
-                audio.classList.add('disabled')
-            })
-            coverBack.addEventListener('click', function () {
-                card.classList.toggle('is-flipped')
-                audio.classList.remove('disabled')
-            })
-    
-            goToNextCard(next, i, cards)
-        } else {
-            closeCardsFunction()
-        }
+    if (cards[i]) {
+        renderCard(cards[i], i)
+
+        let card = document.querySelector('.card')
+        let audio = document.querySelector('.card a')
+        let coverFront = document.querySelector('.cover-front')
+        let coverBack = document.querySelector('.cover-back')
+        let next = document.querySelector('.fa-arrow-right')
+
+        coverFront.addEventListener('click', function () {
+            card.classList.toggle('is-flipped')
+            audio.classList.add('disabled')
+        })
+        coverBack.addEventListener('click', function () {
+            card.classList.toggle('is-flipped')
+            audio.classList.remove('disabled')
+        })
+
+        goToNextCard(next, i, cards)
+    } else {
+        closeCardsFunction()
+    }
 }
 
 function qualifyPhrase(qualification, card) {
