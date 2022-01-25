@@ -153,7 +153,7 @@ async function fetchGetPhrases(url, token) {
 }
 
 function renderTable(table) {
-    console.log(table)
+    /* console.log(table) */
     const wordsList = document.getElementById('wordsList')
     wordsList.innerHTML = ''
     if(table.length === 0){
@@ -245,6 +245,7 @@ function renderTable(table) {
 }
 
 function fetchUpdateCard(url, token, payload) {
+    console.log(payload)
     const settings = {
         method: 'PUT',
         headers: {

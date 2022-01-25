@@ -10,7 +10,6 @@ let isQualified
 
 window.addEventListener('load', async () => {
     let cards = await fetchGetPhrases(`http://localhost:3000/api/1.0/users/${id}/cards`, `Bearer ${token}`)
-    console.log(cards.length)
     if(cards.length != 0) practiceBtn.classList.remove('none')
 })
 
@@ -188,7 +187,8 @@ function checkNextCard(i, cards) {
 }
 
 function qualifyPhrase(qualification, card) {
-    const payload = { qualification }
+    const payload = { qualification, date: new Date() }
+    console.log(payload.date)
     fetchUpdateCard(`http://localhost:3000/api/1.0/cards/${card.id}`, `Bearer ${token}`, payload)
 }
 

@@ -8,12 +8,14 @@ window.addEventListener('load', () => {
 
     createBtn.addEventListener('click', async (e) => {
         e.preventDefault()
+        console.log(new Date())
         const card = {
             word: word.value,
             phonetic: phonetic.value,
             definition: definition.value,
             example: example.value,
             audio: audio.value,
+            date: new Date(),
         }
         console.log(card)
         const token = JSON.parse(localStorage.getItem('jwt'))

@@ -10,6 +10,7 @@ const cardsModel = db.define('cards', {
     "audio": Sequelize.STRING,
     "user_id": Sequelize.INTEGER,
     "qualification": Sequelize.INTEGER,
+    "date": Sequelize.STRING,
 })
 
 module.exports = cardsModel
