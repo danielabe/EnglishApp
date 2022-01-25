@@ -644,10 +644,12 @@ main .t-level meter::-webkit-meter-optimum-value {
 
 main .t-level meter::-webkit-meter-suboptimum-value {
   background: #E6D875;
+  background: aquamarine;
 }
 
 main .t-level meter::-webkit-meter-even-less-good-value {
   background: #F0A061;
+  background: aquamarine;
 }
 
 main .t-edit {

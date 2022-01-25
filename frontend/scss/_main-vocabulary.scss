@@ -112,9 +112,11 @@ main{
         }
         meter::-webkit-meter-suboptimum-value{
             background:#E6D875;
+            background: aquamarine;
         }
         meter::-webkit-meter-even-less-good-value{
             background:#F0A061;
+            background: aquamarine;
         }
     }
     .t-edit{

@@ -124,7 +124,8 @@ function renderCard(info, i) {
 
     let qualification
     high.addEventListener('click', () => {
-        high.style.color = '#37D2E6'
+        /* high.style.color = '#37D2E6' */
+        high.style.color = 'aquamarine'
         medium.style.color = 'black'
         low.style.color = 'black'
         qualification = 100
@@ -132,7 +133,8 @@ function renderCard(info, i) {
         qualifyPhrase(qualification, info)
     })
     medium.addEventListener('click', () => {
-        medium.style.color = '#E6D875'
+        /* medium.style.color = '#E6D875' */
+        medium.style.color = 'aquamarine'
         high.style.color = 'black'
         low.style.color = 'black'
         qualification = 50
@@ -140,7 +142,8 @@ function renderCard(info, i) {
         qualifyPhrase(qualification, info)
     })
     low.addEventListener('click', () => {
-        low.style.color = '#F0A061'
+        /* low.style.color = '#F0A061' */
+        low.style.color = 'aquamarine'
         medium.style.color = 'black'
         high.style.color = 'black'
         qualification = 20
