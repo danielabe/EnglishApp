@@ -253,6 +253,13 @@ main input[type="submit"] {
   border-radius: 5px;
   outline: none;
   cursor: pointer;
+  background-color: #72b1c5;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+main input[type="submit"]:hover {
+  background-color: #72c1c5;
 }
 
 main .label {
@@ -322,8 +329,8 @@ main .search-container .search-btn {
   background-color: #72b1c5;
   outline: none;
   cursor: pointer;
-  -webkit-transition: all 0.5s;
-  transition: all 0.5s;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
 }
 
 main .search-container .search-btn:hover {
@@ -410,8 +417,8 @@ main #words .word button {
   font-weight: bold;
   color: #440a29;
   cursor: pointer;
-  -webkit-transition: all 1s;
-  transition: all 1s;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
 }
 
 main #words .word button:hover {
@@ -479,32 +486,36 @@ main .none {
 }
 
 main .practice-btn-container {
-  position: absolute;
-  top: 165px;
-  right: calc(50% - 33px);
+  /* position: absolute;
+        top: 165px;
+        right: calc(50% - 33px); */
+  margin-left: 2.5%;
 }
 
 @media screen and (min-width: 480px) {
   main .practice-btn-container {
-    top: 85px;
-    right: 2.5%;
+    /* top: 85px;
+            right: 2.5%; */
   }
 }
 
 main .practice-btn {
-  /* width: 70px; */
   width: auto;
   padding: 9px;
   font-size: 14px;
   line-height: 18px;
-  /* background-color: #ef8bbd; */
-  background-color: #72b1c5;
-  /* border: 1.5px solid #440a29; */
   border: none;
   border-radius: 5px;
   color: #440a29;
   font-weight: 600;
   cursor: pointer;
+  background-color: #72b1c5;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+main .practice-btn:hover {
+  background-color: #72c1c5;
 }
 
 main .dictionary-btn {
@@ -861,6 +872,13 @@ main .c-example {
   font-weight: 600;
   background-color: #72b1c5;
   color: #440a29;
+  background-color: #72b1c5;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.swal2-styled.swal2-confirm:hover {
+  background-color: #72c1c5;
 }
 
 .swal2-cancel.swal2-styled {
@@ -871,6 +889,10 @@ main .c-example {
 
 .swal2-confirm.swal2-styled {
   outline: white 4px solid;
+}
+
+.swal2-container.swal2-center.swal2-backdrop-show {
+  overflow-y: scroll !important;
 }
 
 body {

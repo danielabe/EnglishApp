@@ -49,7 +49,7 @@ main{
             background-color: #72b1c5;
             outline: none;
             cursor: pointer;
-            transition: all 0.5s;
+            transition: all 0.3s;
             &:hover{
                 background-color: aquamarine;
                 background-color: #72c1c5;
@@ -108,7 +108,7 @@ main{
                 font-weight: bold;
                 color: #440a29;
                 cursor: pointer;
-                transition: all 1s;
+                transition: all 0.3s;
                 &:hover{
                     background-color: #e3a4d0;
                     background-color: #ef8bbd;

@@ -1,27 +1,29 @@
 main{
     .practice-btn-container{
-        position: absolute;
+        /* position: absolute;
         top: 165px;
-        right: calc(50% - 33px);
+        right: calc(50% - 33px); */
+        margin-left: 2.5%;
         @media screen and (min-width: 480px) {
-            top: 85px;
-            right: 2.5%;
+            /* top: 85px;
+            right: 2.5%; */
         }
     }
     .practice-btn{
-        /* width: 70px; */
         width: auto;
         padding: 9px;
         font-size: 14px;
         line-height: 18px;
-        /* background-color: #ef8bbd; */
-        background-color: #72b1c5;
-        /* border: 1.5px solid #440a29; */
         border: none;
         border-radius: 5px;
         color: #440a29;
         font-weight: 600;
         cursor: pointer;
+        background-color: #72b1c5;
+        transition: all 0.3s;
+        &:hover{
+            background-color: #72c1c5;
+        }
     }
     .dictionary-btn{
         align-self: center;

@@ -31,6 +31,7 @@ async function edition(row) {
         if (result.isConfirmed) {
             const payload = { definition: result.value[0], example: result.value[1] }
             fetchUpdateCard(`http://localhost:3000/api/1.0/cards/${row.id}`, `Bearer ${token}`, payload)
+            document.querySelector('.practice-btn-container').classList.remove('swal') 
         }
     })
 }
@@ -245,7 +246,6 @@ function renderTable(table) {
 }
 
 function fetchUpdateCard(url, token, payload) {
-    console.log(payload)
     const settings = {
         method: 'PUT',
         headers: {

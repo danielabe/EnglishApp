@@ -6,9 +6,8 @@ window.addEventListener('load', () => {
     const urlBase = 'https://api.dictionaryapi.dev/api/v2/entries/en/'
 
     sendBtn.addEventListener('click', (e) => {
-        console.log('anda')
         e.preventDefault()
-        getWord(urlBase, input.value)
+        if(input.value) getWord(urlBase, input.value)
     })
 
     input.addEventListener('keyup', (e) => {
@@ -32,7 +31,7 @@ window.addEventListener('load', () => {
     }
 
     function renderDefinitions(info) {
-        console.log(info)
+        /* console.log(info) */
         list.innerHTML = ''
         if (typeof info.length != 'number') {
             document.getElementById('words').style = "display: none"

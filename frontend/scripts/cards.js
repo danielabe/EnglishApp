@@ -15,7 +15,6 @@ window.addEventListener('load', async () => {
 
 practiceBtn.addEventListener('click', async () => {
     let cards = await fetchGetPhrases(`http://localhost:3000/api/1.0/users/${id}/cards`, `Bearer ${token}`)
-    console.log(cards)
 
     const phrases = selectCards(cards)
 
@@ -192,7 +191,7 @@ function goToNextCard(next, i, cards) {
 }
 
 function checkNextCard(i, cards) {
-    console.log(cards[i])
+    /* console.log(cards[i]) */
     if (cards[i]) {
         renderCard(cards[i], i)
 
@@ -219,7 +218,6 @@ function checkNextCard(i, cards) {
 
 function qualifyPhrase(qualification, card) {
     const payload = { qualification, date: new Date() }
-    console.log(payload.date)
     fetchUpdateCard(`http://localhost:3000/api/1.0/cards/${card.id}`, `Bearer ${token}`, payload)
 }
 

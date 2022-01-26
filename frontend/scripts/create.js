@@ -8,30 +8,31 @@ window.addEventListener('load', () => {
 
     createBtn.addEventListener('click', async (e) => {
         e.preventDefault()
-        console.log(new Date())
-        const card = {
-            word: word.value,
-            phonetic: phonetic.value,
-            definition: definition.value,
-            example: example.value,
-            audio: audio.value,
-            date: new Date(),
-        }
-        console.log(card)
-        const token = JSON.parse(localStorage.getItem('jwt'))
-        const createdCard = await fetchAddWord('http://localhost:3000/api/1.0/cards', card, `Bearer ${token}`)
-        console.log(createdCard)
-        if (createdCard.word) {
-            Swal.fire({
-                icon: 'success',
-                title: 'Your phrase has been saved'
-            })
-        } else if (createdCard.Error === 'That phrase already exists'){
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'That phrase already exists!'
-              })
+        if(word.value) {
+            const card = {
+                word: word.value,
+                phonetic: phonetic.value,
+                definition: definition.value,
+                example: example.value,
+                audio: audio.value,
+                date: new Date(),
+            }
+            console.log(card)
+            const token = JSON.parse(localStorage.getItem('jwt'))
+            const createdCard = await fetchAddWord('http://localhost:3000/api/1.0/cards', card, `Bearer ${token}`)
+            console.log(createdCard)
+            if (createdCard.word) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Your phrase has been saved'
+                })
+            } else if (createdCard.Error === 'That phrase already exists'){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'That phrase already exists!'
+                  })
+            }
         }
     })
 })

@@ -16,6 +16,12 @@
     font-weight: 600;
     background-color: #72b1c5;
     color: #440a29;
+
+    background-color: #72b1c5;
+        transition: all 0.3s;
+        &:hover{
+            background-color: #72c1c5;
+        }
 }
 .swal2-cancel.swal2-styled{
     font-weight: 600;
@@ -24,4 +30,8 @@
 }
 .swal2-confirm.swal2-styled{
     outline: white 4px solid;
+}
+
+.swal2-container.swal2-center.swal2-backdrop-show{
+    overflow-y: scroll !important; 
 }
